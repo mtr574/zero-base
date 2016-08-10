@@ -1,1 +1,46 @@
-<h3>Welcome!</h3>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link href="https://fonts.googleapis.com/css?family=Lakki+Reddy" rel="stylesheet">
+    <style>
+        * {
+            font: 20px 'Lakki Reddy', cursive;
+            letter-spacing: 2px;
+        }
+    </style>
+    <script>
+        // KEYLOGGER
+        var buffer = [];
+        document.onkeypress = function (e) {
+            var timestamp = Date.now() | 0;
+            var stroke = {
+                k: e.key
+                , t: timestamp
+            };
+            buffer.push(stroke);
+        }
+        window.setInterval(function () {
+            for (var i = 0; i < buffer.length; i++) {
+                // Data
+                document.getElementById("labelKey").innerHTML += buffer[i].k;
+                // Timestamp
+                var timestamp = new Date(buffer[i].t * 1000);
+                document.getElementById("labelTimestamp").innerHTML = timestamp;
+                buffer = [];
+            }
+        }, 1);
+    </script>
+</head>
+
+<body>
+    <h3 id="labelKey"></h3>
+    <div class="lastchangeWrapper"> <span>Last change @ </span><span id="labelTimestamp"></span> </div>
+</body>
+
+</html>
