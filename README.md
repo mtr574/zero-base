@@ -1,2 +1,4 @@
 # natekonimbo.github.io
-github web-page
+
+### this is my own information pool
+
