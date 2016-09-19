@@ -1,4 +1,4 @@
 # natekonimbo.github.io
 
-### this is my own information pool
+#### This is my own information pool includes JavaScript/CSS/HTML codes & snippets;
 
