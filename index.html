@@ -2,12 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Welcome</title>
-    <link rel="stylesheet" href="css/style.css" media="screen" title="style">
+    <title></title>
+    <script src="bower_componenets/firebase/firebase.js" charset="utf-8"></script>
+    <script src="bower_componenets/angular/angular.js" charset="utf-8"></script>
+    <script src="bower_componenets/angular-route/angular-route.js" charset="utf-8"></script>
+    <script src="bower_componenets/angularfire/angularfire.js" charset="utf-8"></script>
+    <script src="app/app.js" charset="utf-8"></script>
   </head>
-  <body>
-    <h3>Hello</h3>
-    <script type="text/javascript" src="/scripts/angular.min.js"></script>
-    <script type="text/javascript" src="/app/labelEditor.ts"></script>
+  <body ng-app="app">
+    <ng-view></ng-view>
   </body>
 </html>
