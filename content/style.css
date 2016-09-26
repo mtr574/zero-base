@@ -5,15 +5,27 @@ html, body {
 header.hero {
     display: block;
     background: #6A1B9A;
-    height: 260px;
+    height: 160px;
     width: 100%;
     float: left;
+}
+
+header.hero.expand {
+    height: 260px;
+}
+
+header.hero, header.hero.expand, header h2.heading {
+    transition: all 250ms ease-in-out;
 }
 
 header h2.heading {
     color: #FFF;
     text-align: center;
-    padding: 100px 10px 0;
+    padding-top: 2%;
+}
+
+header.expand h2.heading {
+    padding-top: 8%;
 }
 
 header .search-wrapper {
