@@ -1,3 +1,5 @@
+/*Resets*/
+
 html, body {
     font-family: 'Ubuntu Mono', monospace;
 }
@@ -5,19 +7,21 @@ html, body {
 *:focus {
     border: 0;
     outline: 0;
-    background: #acd901
+    background: #E3F2FD;
 }
+
+
+/*Hedaer & Search*/
 
 header.hero {
     display: block;
     background: #7019a5;
-    height: 160px;
+    height: 220px;
     width: 100%;
-    float: left;
 }
 
 header.hero.expand {
-    height: 260px;
+    height: 160px;
 }
 
 header.hero, header.hero.expand, header .heading {
@@ -31,7 +35,11 @@ header .heading {
 }
 
 header.expand .heading {
-    padding-top: 50px;
+    padding-top: 0;
+}
+
+header.expand .heading h1, header.expand .heading h2 {
+    margin: 0;
 }
 
 header .search-wrapper {
@@ -40,26 +48,44 @@ header .search-wrapper {
     margin: 30px auto 0;
 }
 
-header .search-wrapper form {
+header .search-wrapper {
     position: relative;
-    width: 350px;
+    width: 400px;
 }
 
 header .search-wrapper input[type="text"] {
     border: 0;
     height: 35px;
     width: 100%;
-    padding-left: 10px;
+    padding-left: 60px;
     font-size: 18px;
     border-radius: 6px;
 }
 
-header .search-wrapper button[type="button"] {
+header .search-wrapper button {
     border: 0;
     width: 50px;
     height: 35px;
     position: absolute;
     top: 0;
+}
+
+header .search-wrapper button#newDocButton {
+    left: 0;
+    background: #FFF;
+    font-size: 18px;
+    border-radius: 6px 0 0 6px;
+}
+
+header .search-wrapper button#newDocButton:hover {
+    background: #E3F2FD;
+}
+
+header .search-wrapper button#newDocButton span {
+    padding-top: 5px;
+}
+
+header .search-wrapper button#searchButton {
     right: 0;
     font-size: 0;
     max-width: 256px;
@@ -67,4 +93,76 @@ header .search-wrapper button[type="button"] {
     background: transparent url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDQ4NS4yMTMgNDg1LjIxMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDg1LjIxMyA0ODUuMjEzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTM2My45MDksMTgxLjk1NUMzNjMuOTA5LDgxLjQ3MywyODIuNDQsMCwxODEuOTU2LDBDODEuNDc0LDAsMC4wMDEsODEuNDczLDAuMDAxLDE4MS45NTVzODEuNDczLDE4MS45NTEsMTgxLjk1NSwxODEuOTUxICAgIEMyODIuNDQsMzYzLjkwNiwzNjMuOTA5LDI4Mi40MzcsMzYzLjkwOSwxODEuOTU1eiBNMTgxLjk1NiwzMTguNDE2Yy03NS4yNTIsMC0xMzYuNDY1LTYxLjIwOC0xMzYuNDY1LTEzNi40NiAgICBjMC03NS4yNTIsNjEuMjEzLTEzNi40NjUsMTM2LjQ2NS0xMzYuNDY1Yzc1LjI1LDAsMTM2LjQ2OCw2MS4yMTMsMTM2LjQ2OCwxMzYuNDY1ICAgIEMzMTguNDI0LDI1Ny4yMDgsMjU3LjIwNiwzMTguNDE2LDE4MS45NTYsMzE4LjQxNnoiIGZpbGw9IiMwMDAwMDAiLz4KCQk8cGF0aCBkPSJNNDcxLjg4Miw0MDcuNTY3TDM2MC41NjcsMjk2LjI0M2MtMTYuNTg2LDI1Ljc5NS0zOC41MzYsNDcuNzM0LTY0LjMzMSw2NC4zMjFsMTExLjMyNCwxMTEuMzI0ICAgIGMxNy43NzIsMTcuNzY4LDQ2LjU4NywxNy43NjgsNjQuMzIxLDBDNDg5LjY1NCw0NTQuMTQ5LDQ4OS42NTQsNDI1LjMzNCw0NzEuODgyLDQwNy41Njd6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==) no-repeat center;
     background-size: 20px;
     padding: 0;
+}
+
+
+/*Loader animation*/
+
+
+/* Loader */
+
+.loader {
+    display: block;
+    height: 10px;
+    width: 60px;
+    margin: 20px auto;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #d03;
+    border-radius: 50%;
+    float: left;
+    margin: 0 5px;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-animation: fx 1000ms ease infinite 0ms;
+    animation: fx 1000ms ease infinite 0ms;
+}
+
+.dot:nth-child(2) {
+    -webkit-animation: fx 1000ms ease infinite 300ms;
+    animation: fx 1000ms ease infinite 300ms;
+}
+
+.dot:nth-child(3) {
+    -webkit-animation: fx 1000ms ease infinite 600ms;
+    animation: fx 1000ms ease infinite 600ms;
+}
+
+@-webkit-keyframes fx {
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fx {
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/*END*/
+
+
+/*Docs container */
+
+#newDocPanel {
+    display: none;
+}
+
+#newDocPanel.reveal {
+  display: block;
 }

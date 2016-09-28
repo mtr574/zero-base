@@ -3,48 +3,69 @@
 
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>N0b45e</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
     <link rel="stylesheet" href="/content/bootstrap.min.css" media="screen" title="no title">
     <link rel="stylesheet" href="/content/style.css" media="screen" title="no title">
     <script type="text/javascript" src="/app/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-    <!-- AngularJS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-    <!-- Firebase -->
-    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-    <!-- AngularFire -->
-    <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+    <script type="text/javascript" src="/app/angular.min.js"></script>
+    <script type="text/javascript" src="/app/firebase.js"></script>
+    <script type="text/javascript" src="/app/angularfire.js"></script>
+    <script type="text/javascript" src="/app/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/app/app.js"></script>
 </head>
 
 <body ng-app="nobase">
-    <header class="hero col-md-12">
-        <h1 class="heading"> Search in the knowledge base</h1>
+    <!-- Hedaer & Search  -->
+    <header class="hero" ng-controller="headerController">
+        <div class="heading">
+            <h1>N0b45e</h1>
+            <h2>Search in the knowledge base</h2>
+        </div>
         <div class="search-wrapper">
-            <form class="" action="/" method="post">
-                <input id="search" type="text" name="name" placeholder="Search">
-                <button id="searchButton" type="button" name="button">Search</button>
-            </form>
+            <button id="newDocButton" type="button" name="button" ng-click="newDocPanelOpen()">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </button>
+            <input id="search" type="text" name="name" placeholder="Search" ng-model="searchTitle.$">
+            <button id="searchButton" type="button" name="button">Search</button>
         </div>
     </header>
 
     <div class="container">
+        <!-- Lodaer -->
+        <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <!-- Docs -->
+        <div id="newDocPanel" ng-controller="NewDocController">
+            <form name="newDocForm" ng-submit="postNewDoc()">
+                <div class="">
+                    <div class="headline">New document</div>
+                    <div class="input-group">
+                        <label for="name">Title</label>
+                        <input id="name" class="form-control" type="text" ng-model="docTitle" />
+                    </div>
+                    <div class="input-group">
+                        <label for="message">Content</label>
+                        <textarea id="message" class="form-control" ng-model="docContent"></textarea>
+                    </div>
+                    <button type="submit" class="send-button">Post</button>
+                </div>
+            </form>
+        </div>
         <div class="" ng-controller="DocsController">
             <ul>
-                <li ng-repeat="message in messages">{{ message.text }}</li>
+                <li ng-repeat="doc in docs | filter:searchTitle" ng-cloak>
+                    <h3>{{ doc.title }}</h3>
+                    <span>{{ doc.time | date : format : timezone}}</span>
+                </li>
             </ul>
         </div>
     </div>
-    <script type="text/javascript" src="/app/app.js"></script>
-    <script type="text/javascript">
-        // Initialize Firebase
-        var config = {
-            apiKey: "OAC2N30CkXQB0JaT9cu0FR3nltzgvZ8vUxau5Y7B",
-            authDomain: "zebraz.firebaseapp.com",
-            databaseURL: "https://zebraz.firebaseio.com",
-        };
-        firebase.initializeApp(config);
-    </script>
     <script type="text/javascript">
         $(function() {
             var header = $("header.hero");
@@ -65,12 +86,6 @@
                 });
                 $(".container ul").append("<li>" + data[0].username + "</li>");
             });
-            // Write post
-            // var i = 0;
-            // 
-            // firebase.database().ref('docs/' + i).set({
-            //     username: "nate"
-            // });
         });
     </script>
 </body>
