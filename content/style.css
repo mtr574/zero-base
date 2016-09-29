@@ -45,12 +45,9 @@ header.expand .heading h1, header.expand .heading h2 {
 header .search-wrapper {
     display: table;
     width: auto;
-    margin: 30px auto 0;
-}
-
-header .search-wrapper {
     position: relative;
     width: 400px;
+    margin: 30px auto 0;
 }
 
 header .search-wrapper input[type="text"] {
@@ -111,7 +108,7 @@ header .search-wrapper button#searchButton {
 .dot {
     width: 10px;
     height: 10px;
-    border: 2px solid #d03;
+    border: 2px solid #4A148C;
     border-radius: 50%;
     float: left;
     margin: 0 5px;
@@ -159,10 +156,66 @@ header .search-wrapper button#searchButton {
 
 /*Docs container */
 
-#newDocPanel {
+#docs, #newDocPanel {
     display: none;
 }
 
+#docs ul {
+    padding-left: 10px;
+    list-style-type: none;
+}
+
+#docs ul .doc-wrapper {
+    background: #F3E5F5;
+    border-radius: 6px;
+    padding-left: 10px;
+    position: relative;
+}
+
+#docs ul .doc-wrapper h3 {
+    padding: 10px 0;
+}
+
+#docs ul .doc-wrapper span.timestamp {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+}
+
+#docs ul .doc-wrapper h3:before {
+    content: "\f17";
+    font-size: 22px;
+    margin-right: 10px;
+}
+
 #newDocPanel.reveal {
-  display: block;
+    display: table;
+    max-width: 280px;
+    margin: 0 auto;
+    width: auto;
+}
+
+#newDocPanel.reveal + #docs {
+    display: none !important;
+}
+
+#docs.grid .doc-wrapper {
+  width: 50%;
+  display: inline-block;
+}
+
+/*Docs tools widget*/
+.tools {
+  padding: 10px;
+}
+
+/*Responsive Adaptations*/
+
+@media (max-width:767px) {
+    header.hero {
+        height: 180px;
+    }
+    header .search-wrapper {
+        max-width: 250px;
+    }
 }

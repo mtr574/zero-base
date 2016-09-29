@@ -1,22 +1,25 @@
 var app = angular.module("nobase", ["firebase"]);
 
+
 /**
- * Header search and new doc controller
+ * Configuration
  */
-app.controller("headerController", function($scope) {
+app.constant('config', {
+    fbaseURL: "https://zebraz.firebaseio.com"
+})
+
+/**
+ * Retrieve docs
+ */
+app.controller("DocsController", function($scope, $firebaseArray, config) {
     // Open new doc panel
     $scope.newDocPanelOpen = function() {
         var panel = $("#newDocPanel");
         panel.toggleClass("reveal");
     }
-});
 
-/**
- * Retrieve docs
- */
-app.controller("DocsController", function($scope, $firebaseArray) {
     // Settings
-    var ref = new Firebase("https://zebraz.firebaseio.com");
+    var ref = new Firebase(config.fbaseURL);
 
     // Loader
     ref.on("value", function(status) {
@@ -24,6 +27,7 @@ app.controller("DocsController", function($scope, $firebaseArray) {
             $(".loader").fadeIn();
         } else {
             $(".loader").fadeOut();
+            $("#docs").fadeIn();
         }
     });
 
@@ -35,20 +39,22 @@ app.controller("DocsController", function($scope, $firebaseArray) {
 /**
  * Add new doc
  */
-app.controller("NewDocController", function($scope, $firebaseArray) {
+app.controller("NewDocController", function($scope, $firebaseArray, config) {
+
     // Settings
-    var ref = new Firebase("https://zebraz.firebaseio.com");
+    var ref = new Firebase(config.fbaseURL);
 
     // Add new doc
     $scope.messages = $firebaseArray(ref);
     $scope.postNewDoc = function() {
         var timestamp = new Date().getTime();
         $scope.messages.$add({
+            time: timestamp,
             title: $scope.docTitle,
-            time: timestamp
+            content: $scope.docContent
         }).then(function() {
             // done. close the form
-            console.log("new doc added.");
+            $("#newDocPanel").fadeOut('fast').remoceClass('reveal');
         });
 
     };

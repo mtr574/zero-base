@@ -17,12 +17,12 @@
     <script type="text/javascript" src="/app/app.js"></script>
 </head>
 
-<body ng-app="nobase">
+<body ng-app="nobase" ng-controller="DocsController">
     <!-- Hedaer & Search  -->
-    <header class="hero" ng-controller="headerController">
+    <header class="hero">
         <div class="heading">
             <h1>N0b45e</h1>
-            <h2>Search in the knowledge base</h2>
+            <h2 class="hidden-xs">Search in the knowledge base</h2>
         </div>
         <div class="search-wrapper">
             <button id="newDocButton" type="button" name="button" ng-click="newDocPanelOpen()">
@@ -40,7 +40,7 @@
             <div class="dot"></div>
             <div class="dot"></div>
         </div>
-        <!-- Docs -->
+        <!-- New doc panel -->
         <div id="newDocPanel" ng-controller="NewDocController">
             <form name="newDocForm" ng-submit="postNewDoc()">
                 <div class="">
@@ -57,11 +57,23 @@
                 </div>
             </form>
         </div>
-        <div class="" ng-controller="DocsController">
+        <!-- Docs container -->
+        <div id="docs">
+            <div class="tools">
+                <button id="docsOrderTime" type="button" name="button">
+                <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+            </button>
+                <button id="docsGridview" type="button" name="button">
+                <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+            </button>
+            </div>
             <ul>
-                <li ng-repeat="doc in docs | filter:searchTitle" ng-cloak>
+                <li class="doc-wrapper" ng-repeat="doc in docs | orderBy: '-time' | filter:searchTitle" ng-cloak>
                     <h3>{{ doc.title }}</h3>
-                    <span>{{ doc.time | date : format : timezone}}</span>
+                    <span class="timestamp">{{ doc.time | date : format : timezone}}</span>
+                    <p>
+                      {{ doc.content }}
+                    </p>
                 </li>
             </ul>
         </div>
@@ -69,6 +81,7 @@
     <script type="text/javascript">
         $(function() {
             var header = $("header.hero");
+            var docsContainer = $("#docs");
             $("#search").focusin(function() {
                 // Expand header
                 header.addClass('expand');
@@ -86,6 +99,21 @@
                 });
                 $(".container ul").append("<li>" + data[0].username + "</li>");
             });
+            // tools function
+            $("#docsGridview").on('click', function() {
+                docsContainer.toggleClass('grid');
+            });
+            // Capture 's' key to focus search input
+            // firstTime = false;
+            // $(window).on('keydown', function(e) {
+            //     if (e.keyCode == 83) {
+            //         if (!firstTime) {
+            //             e.preventDefault();
+            //             $("#search").focus();
+            //             firstTime = true;
+            //         }
+            //     }
+            // });
         });
     </script>
 </body>
