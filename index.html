@@ -1,121 +1,163 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>N0b45e</title>
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
-    <link rel="stylesheet" href="/content/bootstrap.min.css" media="screen" title="no title">
-    <link rel="stylesheet" href="/content/style.css" media="screen" title="no title">
-    <script type="text/javascript" src="/app/jquery.min.js"></script>
-    <script type="text/javascript" src="/app/angular.min.js"></script>
-    <script type="text/javascript" src="/app/firebase.js"></script>
-    <script type="text/javascript" src="/app/angularfire.js"></script>
-    <script type="text/javascript" src="/app/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/app/app.js"></script>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>N0b45e</title>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+        <link rel="stylesheet" href="/content/bootstrap.min.css" media="screen" title="no title">
+        <link rel="stylesheet" href="/content/style.css" media="screen" title="no title">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
+        <script type="text/javascript" src="/app/jquery.min.js"></script>
+        <script type="text/javascript" src="/app/angular.min.js"></script>
+        <script type="text/javascript" src="/app/firebase.js"></script>
+        <script type="text/javascript" src="/app/angularfire.js"></script>
+        <script type="text/javascript" src="/app/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/app/app.js"></script>
+        <!-- Syntax highlight -->
+        <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css"> -->
+        <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script> -->
+        <script src="/app/angular-highlightjs.min.js" charset="utf-8"></script>
+    </head>
 
-<body ng-app="nobase" ng-controller="DocsController">
-    <!-- Hedaer & Search  -->
-    <header class="hero">
-        <div class="heading">
-            <h1>N0b45e</h1>
-            <h2 class="hidden-xs">Search in the knowledge base</h2>
-        </div>
-        <div class="search-wrapper">
-            <button id="newDocButton" type="button" name="button" ng-click="newDocPanelOpen()">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            </button>
-            <input id="search" type="text" name="name" placeholder="Search" ng-model="searchTitle.$">
-            <button id="searchButton" type="button" name="button">Search</button>
-        </div>
-    </header>
-
-    <div class="container">
-        <!-- Lodaer -->
-        <div class="loader">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-        <!-- New doc panel -->
-        <div id="newDocPanel" ng-controller="NewDocController">
-            <form name="newDocForm" ng-submit="postNewDoc()">
-                <div class="">
-                    <div class="headline">New document</div>
-                    <div class="input-group">
-                        <label for="name">Title</label>
-                        <input id="name" class="form-control" type="text" ng-model="docTitle" />
-                    </div>
-                    <div class="input-group">
-                        <label for="message">Content</label>
-                        <textarea id="message" class="form-control" ng-model="docContent"></textarea>
-                    </div>
-                    <button type="submit" class="send-button">Post</button>
-                </div>
-            </form>
-        </div>
-        <!-- Docs container -->
-        <div id="docs">
-            <div class="tools">
-                <button id="docsOrderTime" type="button" name="button">
-                <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
-            </button>
-                <button id="docsGridview" type="button" name="button">
-                <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
-            </button>
+    <body ng-app="nobase" ng-controller="DocsController">
+        <!-- Hedaer & Search  -->
+        <header class="hero">
+            <div class="heading">
+                <h1>N0b45e</h1>
+                <h2 class="hidden-xs">Search in the knowledge base</h2>
             </div>
-            <ul>
-                <li class="doc-wrapper" ng-repeat="doc in docs | orderBy: '-time' | filter:searchTitle" ng-cloak>
-                    <h3>{{ doc.title }}</h3>
-                    <span class="timestamp">{{ doc.time | date : format : timezone}}</span>
-                    <p>
-                      {{ doc.content }}
-                    </p>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <script type="text/javascript">
-        $(function() {
-            var header = $("header.hero");
-            var docsContainer = $("#docs");
-            $("#search").focusin(function() {
-                // Expand header
-                header.addClass('expand');
-            }).focusout(function() {
-                // Collapse header
-                header.removeClass('expand');
-            });
-            // search
-            $("#searchButton").on('click', function() {
-                console.log("get firebase data");
-                var docs = firebase.database().ref('docs'),
-                    data;
-                docs.on('value', function(snapshot) {
-                    data = snapshot.val();
+            <div class="search-wrapper">
+                <button id="newDocButton" type="button" name="button" ng-click="newDocPanelOpen()">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
+                <input id="search" type="text" name="name" placeholder="Search" ng-model="searchTitle.$">
+                <button id="searchButton" type="button" name="button">Search</button>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- Lodaer -->
+            <div class="loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <!-- New doc panel -->
+            <section id="newDocPanel" ng-controller="NewDocController">
+                <form name="newDocForm" ng-submit="postNewDoc()">
+                    <div class="">
+                        <div class="headline">New document</div>
+                        <div class="input-group">
+                            <label for="name">Title</label>
+                            <input id="name" class="form-control" type="text" ng-model="docTitle"/>
+                        </div>
+                        <div class="input-group">
+                            <label for="message">Code</label>
+                            <textarea id="code" class="form-control" ng-model="docCode"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label for="message">Content</label>
+                            <textarea id="message" class="form-control" ng-model="docContent"></textarea>
+                        </div>
+                        <button type="submit" class="send-button">Post</button>
+                    </div>
+                </form>
+            </section>
+            <!-- Docs container -->
+            <section id="docs" class="row">
+                <div class="tools">
+                    <button id="docsOrderTime" type="button" class="btn">
+                        <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+                    </button>
+                    <button id="docsGridview" type="button" class="btn">
+                        <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn">Favorites
+                        <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <article class="doc col-md-6 col-sm-12" ng-repeat="doc in docs | orderBy: '-time' | filter:searchTitle" id="doc{{ doc.$id }}" ng-cloak>
+                    <div class="wrapper">
+                        <header>
+                            <h3>{{ doc.title }}</h3>
+                            <span class="timestamp">{{ doc.time | date : format : timezone}}</span>
+                            <span class="creator">{{ doc.creator }}</span>
+                            <button type="button" class="doc-menu">
+                                <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+                            </button>
+                            <ul class="doc-menu">
+                                <li>
+                                    <button type="button" class="doc-menu-permalink">
+                                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="doc-menu-edit">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="doc-menu-remove" ng-click="deleteDoc(doc.$id, doc.creator)">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </header>
+                        <div class="content">
+                            <p>
+                                {{ doc.content }}
+                            </p>
+                        </div>
+                        <div class="code">
+                            <p>
+                                <textarea id="doc{{ doc.$id }}-code" rows="8" cols="40">{{ doc.code }}</textarea>
+                            </p>
+                        </div>
+                        <div class="extra-menu">
+                            <button type="button" class="btn copy-code" data-clipboard-target="#doc{{ doc.$id }}-code">Copy code
+                                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn">Vote helpful
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <script type="text/javascript">
+            $(function() {
+                var header = $("header.hero");
+                var docsContainer = $("#docs article");
+                $("#search").focusin(function() {
+                    // Expand header
+                    header.addClass('expand');
+                }).focusout(function() {
+                    // Collapse header
+                    header.removeClass('expand');
                 });
-                $(".container ul").append("<li>" + data[0].username + "</li>");
+                // search
+                $("#searchButton").on('click', function() {
+                    console.log("get firebase data");
+                    var docs = firebase.database().ref('docs'),
+                        data;
+                    docs.on('value', function(snapshot) {
+                        data = snapshot.val();
+                    });
+                    $(".container ul").append("<li>" + data[0].username + "</li>");
+                });
+                // tools function
+                $("#docsGridview").on('click', function() {
+                    docsContainer.addClass('col-md-6').removeClass('col-md-12');
+                });
+                // Capture 's' key to focus search input firstTime = false; $(window).on('keydown', function(e) {     if (e.keyCode == 83) {         if (!firstTime) {             e.preventDefault();             $("#search").focus();             firstTime = true; } }
+                // }); Clipboard copy init
+                new Clipboard('.copy-code');
             });
-            // tools function
-            $("#docsGridview").on('click', function() {
-                docsContainer.toggleClass('grid');
-            });
-            // Capture 's' key to focus search input
-            // firstTime = false;
-            // $(window).on('keydown', function(e) {
-            //     if (e.keyCode == 83) {
-            //         if (!firstTime) {
-            //             e.preventDefault();
-            //             $("#search").focus();
-            //             firstTime = true;
-            //         }
-            //     }
-            // });
-        });
-    </script>
-</body>
+        </script>
+    </body>
 
 </html>
