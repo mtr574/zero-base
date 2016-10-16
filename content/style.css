@@ -39,25 +39,43 @@ header.expand .heading h1, header.expand .heading h2 {
     margin: 0;
 }
 
-header .search-wrapper {
+header .heading h6 {
+    margin-bottom: -20px;
+}
+
+header .header-tools {
     display: table;
-    width: auto;
     position: relative;
-    width: 400px;
+    width: auto;
+    min-width: 350px;
     margin: 30px auto 0;
+}
+
+header .header-tools .tools-wrapper {
+    display: inline-block;
+    width: 30%;
+    padding-right: 50px;
+    float: left;
+}
+
+header .header-tools .search-wrapper {
+    display: inline-block;
+    float: right;
+    width: 70%;
+    position: relative;
 }
 
 header .search-wrapper input[type="text"] {
     border: 0;
     height: 35px;
-    width: 80%;
+    width: 100%;
     padding-left: 10px;
     font-size: 18px;
     border-radius: 3px;
-    margin-left: 80px;
+    float: right;
 }
 
-header .search-wrapper button {
+header .header-tools button {
     border: 0;
     width: 50px;
     height: 35px;
@@ -65,22 +83,22 @@ header .search-wrapper button {
     top: 0;
 }
 
-header .search-wrapper button#newDocButton {
+header .header-tools button#newDocButton {
     left: 0;
     background: #FFF;
     font-size: 18px;
     border-radius: 3px;
 }
 
-header .search-wrapper button#newDocButton:hover {
+header .header-tools button#newDocButton span {
+    top: 3px;
+}
+
+header .header-tools button#newDocButton:hover {
     background: #E3F2FD;
 }
 
-header .search-wrapper button#newDocButton span {
-    padding-top: 5px;
-}
-
-header .search-wrapper button#searchButton {
+header .header-tools .search-wrapper button#searchButton {
     right: 0;
     font-size: 0;
     max-width: 256px;
@@ -90,7 +108,7 @@ header .search-wrapper button#searchButton {
     padding: 0;
 }
 
-/*Loader animation*/
+/* END OF HEADER */
 /* Loader */
 .loader {
     display: block;
@@ -154,7 +172,7 @@ header .search-wrapper button#searchButton {
 
 #docs .doc {
     max-height: 180px;
-    min-height: 500px;
+    min-height: 370px;
     overflow: hidden;
     margin-bottom: 20px;
     background: rgba(238,238,238,0.15);
@@ -162,17 +180,19 @@ header .search-wrapper button#searchButton {
 }
 
 #docs .doc .wrapper {
-    /* background: rgba(112, 25, 165, 0.36); */
-    border-radius: 4px;
+    background: #ffffff;
+    border-radius: 3px;
     position: relative;
     overflow: hidden;
     min-height: 120px;
+    padding: 10px;
+    border-top: 1px solid rgba(0,0,0,0.16);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 #docs .doc .wrapper header {
     height: 45px;
     overflow: hidden;
-    background: #ddd;
     border-radius: 3px;
 }
 
@@ -190,7 +210,7 @@ header .search-wrapper button#searchButton {
 }
 
 #docs .doc span.timestamp, #docs .doc span.creator {
-    color: #1973a5;
+    color: #1973a0;
     text-align: left;
     max-width: 120px;
     min-width: 120px;
@@ -206,9 +226,13 @@ header .search-wrapper button#searchButton {
     padding: 2px 7px;
 }
 
+#docs .doc button.doc-menu {
+    margin-top: 2px;
+}
+
 #docs .doc button.doc-menu, #docs .doc ul.doc-menu button {
     width: 25px;
-    height: 20px;
+    height: 30px;
     border: 0;
     outline: 0;
     padding: 0;
@@ -224,14 +248,14 @@ header .search-wrapper button#searchButton {
 }
 
 #docs .doc button.doc-menu:hover span, #docs .doc ul.doc-menu button:hover span {
-    background: #eee;
+    background: #fff;
     color: #000;
     border-radius: 4px;
 }
 
 #docs .doc ul.doc-menu {
-    display: none;
-    opacity: 0;
+    /*     display: none; */
+/*     opacity: 0; */
     float: right;
     list-style-type: none;
     padding: 3px 0;
@@ -242,9 +266,9 @@ header .search-wrapper button#searchButton {
     transition: all 250ms ease;
 }
 
-#docs .doc ul.doc-menu {
-    display: block;
-    opacity: 1;
+#docs .doc ul.doc-menu.poped {
+    /*     display: block; */
+    /* opacity: 1; */
     right: 0;
     transition: all 250ms ease;
 }
@@ -283,6 +307,7 @@ header .search-wrapper button#searchButton {
     display: none !important;
 }
 
+/* END OF DOC CONTAINER */
 /*New document panel*/
 button.send-button {
     border: 0;

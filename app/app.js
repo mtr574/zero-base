@@ -18,6 +18,11 @@ app.controller("DocsController", function($scope, $firebaseArray, config) {
         panel.toggleClass("reveal");
     }
 
+    // Doc widget menu
+    $scope.toggleMenu = function(a) {
+        $('ul.doc-menu.' + a.doc.$id).toggleClass('poped');
+    }
+
     // Object
     var ref = new Firebase(config.fbaseURL);
 

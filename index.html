@@ -28,13 +28,18 @@
             <div class="heading">
                 <h1>N0b45e</h1>
                 <h2 class="hidden-xs">Search in the knowledge base</h2>
+                <h6 class="hidden-xs">or add new doc</h6>
             </div>
-            <div class="search-wrapper">
-                <button id="newDocButton" type="button" name="button" ng-click="newDocPanelOpen()">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                </button>
-                <input id="search" type="text" name="name" placeholder="Search" ng-model="searchTitle.$">
-                <button id="searchButton" type="button" name="button">Search</button>
+            <div class="header-tools">
+                <div class="tools-wrapper">
+                  <button id="newDocButton" type="button" name="button" ng-click="newDocPanelOpen()">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  </button>
+                </div>
+                <div class="search-wrapper">
+                  <input id="search" type="text" name="name" placeholder="Search" ng-model="searchTitle.$">
+                  <button id="searchButton" type="button" name="button">Search</button>
+                </div>
             </div>
         </header>
 
@@ -85,10 +90,10 @@
                             <h3>{{ doc.title }}</h3>
                             <span class="timestamp">{{ doc.time | date : format : timezone}}</span>
                             <span class="creator">{{ doc.creator }}</span>
-                            <button type="button" class="doc-menu">
+                            <button type="button" class="doc-menu" ng-click="toggleMenu(this)">
                                 <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
                             </button>
-                            <ul class="doc-menu">
+                            <ul class="doc-menu {{this.doc.$id}}">
                                 <li>
                                     <button type="button" class="doc-menu-permalink">
                                         <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
@@ -113,8 +118,13 @@
                         </div>
                         <div class="code">
                             <p>
-                                <textarea id="doc{{ doc.$id }}-code" rows="8" cols="40">{{ doc.code }}</textarea>
+                                <textarea id="doc{{ doc.$id }}-code" rows="8" cols="40" readonly="true">{{ doc.code }}</textarea>
                             </p>
+                        </div>
+                        <div class="tags">
+                            <ul>
+                                <li class="tag" ng-repeat="tag in tagList"></li>
+                            </ul>
                         </div>
                         <div class="extra-menu">
                             <button type="button" class="btn copy-code" data-clipboard-target="#doc{{ doc.$id }}-code">Copy code
