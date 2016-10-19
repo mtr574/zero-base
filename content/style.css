@@ -9,6 +9,15 @@ html, body {
     background: #E3F2FD;
 }
 
+section {
+    padding-top: 10px;
+}
+
+.box-sha {
+    border-top: 1px solid rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
 /*Hedaer & Search*/
 header.hero {
     display: block;
@@ -166,17 +175,12 @@ header .header-tools .search-wrapper button#searchButton {
 
 /*END*/
 /*Docs container */
-#docs, #newDocPanel {
-    display: none;
-}
-
 #docs .doc {
     max-height: 180px;
     min-height: 370px;
     overflow: hidden;
     margin-bottom: 20px;
-    background: rgba(238,238,238,0.15);
-    border-bottom: 2px solid #000;
+    background: rgba(238, 238, 238, 0.15);
 }
 
 #docs .doc .wrapper {
@@ -186,8 +190,6 @@ header .header-tools .search-wrapper button#searchButton {
     overflow: hidden;
     min-height: 120px;
     padding: 10px;
-    border-top: 1px solid rgba(0,0,0,0.16);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 #docs .doc .wrapper header {
@@ -255,7 +257,7 @@ header .header-tools .search-wrapper button#searchButton {
 
 #docs .doc ul.doc-menu {
     /*     display: none; */
-/*     opacity: 0; */
+    /*     opacity: 0; */
     float: right;
     list-style-type: none;
     padding: 3px 0;
@@ -296,34 +298,40 @@ header .header-tools .search-wrapper button#searchButton {
     margin-top: 8px;
 }
 
-#newDocPanel.reveal {
-    display: table;
-    max-width: 280px;
-    margin: 0 auto;
-    width: auto;
-}
-
-#newDocPanel.reveal+#docs {
-    display: none !important;
-}
-
 /* END OF DOC CONTAINER */
-/*New document panel*/
-button.send-button {
-    border: 0;
-    background: transparent;
-    font-size: 18px;
-    border: 2px solid #673AB7;
-    color: #673AB7;
-    padding: 3px 20px;
+/* New document */
+#newDocPanel {
+    display: table;
+    width: auto;
+    max-width: 300px;
+    margin: 0 auto;
 }
 
-button.send-button:hover {
+#newDocPanel > form {
+    padding: 15px 30px;
+}
+
+#newDocPanel > form .headline {
+    margin-bottom: 20px;
+}
+
+#newDocPanel > form .headline h3 {
+    border-left: 3px solid #d03;
+    text-indent: 20px;
+}
+
+button.btn-purple {
+    background: transparent;
+    border: 1px solid #673AB7;
+    color: #673AB7;
+}
+
+button.btn-purple:hover {
     background: #673AB7;
     color: #fff;
 }
 
-/*Docs tools widget*/
+/* Docs tools widget */
 .tools {
     padding: 10px;
 }

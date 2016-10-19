@@ -1,21 +1,11 @@
-var app = angular.module("nobase", ["firebase", "hljs"]);
-
-
-/**
- * Configuration
- */
-app.constant('config', {
-    fbaseURL: "https://zebraz.firebaseio.com"
-})
-
 /**
  * Retrieve docs
  */
-app.controller("DocsController", function($scope, $firebaseArray, config) {
-    // Open new doc panel
-    $scope.newDocPanelOpen = function() {
-        var panel = $("#newDocPanel");
-        panel.toggleClass("reveal");
+app.controller("mainController", function($scope, $location, $firebaseArray, config, routerService) {
+
+    // Router goto helper
+    $scope.goto = function(path) {
+        routerService.goto(path)
     }
 
     // Doc widget menu
@@ -57,26 +47,47 @@ app.controller("DocsController", function($scope, $firebaseArray, config) {
 /**
  * Add new doc
  */
-app.controller("NewDocController", function($scope, $firebaseArray, config) {
+app.controller("newController", function($scope, $firebaseArray, config, routerService) {
+
+    // Router goto helper
+    $scope.goto = function(path, id) {
+        routerService.goto(path, id)
+    }
+    // END
 
     // Settings
     var ref = new Firebase(config.fbaseURL);
+    $scope.messages = $firebaseArray(ref);
 
     // Add new doc
-    $scope.messages = $firebaseArray(ref);
     $scope.postNewDoc = function() {
-        var timestamp = new Date().getTime();
+        var timestamp = new Date().getTime(),
+            doc_title = $scope.docTitle || "n/a",
+            doc_creator = "Nate Ben",
+            doc_code = $scope.docCode || "n/a",
+            doc_content = $scope.docContent || "n/a";
+
+        // Post new doc
         $scope.messages.$add({
             time: timestamp,
-            title: $scope.docTitle || "n/a",
-            creator: "Nate Ben",
-            code: $scope.docCode || "n/a",
-            content: $scope.docContent || "n/a"
+            title: doc_title,
+            creator: doc_creator,
+            code: doc_code,
+            content: doc_content
         }).then(function() {
-            // done. close the form
-            $("#newDocPanel").removeClass('reveal');
+            // done
+            routerService.goto('/');
         });
 
     };
+
+});
+
+/**
+ * Edit controller
+ */
+app.controller('editController', function($scope, $routeParams) {
+
+    $scope.docId = $routeParams.docId;
 
 });

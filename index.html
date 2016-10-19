@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-
     <head>
+        <base href="/">
         <meta charset="utf-8">
         <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,40 +9,43 @@
         <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
         <link rel="stylesheet" href="/content/bootstrap.min.css" media="screen" title="no title">
         <link rel="stylesheet" href="/content/style.css" media="screen" title="no title">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
+        <script src="/app/clipboard.min.js"></script>
         <script type="text/javascript" src="/app/jquery.min.js"></script>
         <script type="text/javascript" src="/app/angular.min.js"></script>
+        <script type="text/javascript" src="/app/angular-route.min.js"></script>
         <script type="text/javascript" src="/app/firebase.js"></script>
         <script type="text/javascript" src="/app/angularfire.js"></script>
         <script type="text/javascript" src="/app/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/app/app.js"></script>
+        <script type="text/javascript" src="/app/app-config.js"></script>
+        <script type="text/javascript" src="/app/app-routes.js"></script>
+        <script type="text/javascript" src="/app/app-ctrl.js"></script>
+        <script type="text/javascript" src="/app/app-service.js"></script>
         <!-- Syntax highlight -->
         <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css"> -->
         <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script> -->
         <script src="/app/angular-highlightjs.min.js" charset="utf-8"></script>
     </head>
 
-    <body ng-app="nobase" ng-controller="DocsController">
+    <body ng-app="nobase" ng-controller="mainController">
         <!-- Hedaer & Search  -->
         <header class="hero">
             <div class="heading">
                 <h1>N0b45e</h1>
                 <h2 class="hidden-xs">Search in the knowledge base</h2>
-                <h6 class="hidden-xs">or add new doc</h6>
             </div>
             <div class="header-tools">
                 <div class="tools-wrapper">
-                  <button id="newDocButton" type="button" name="button" ng-click="newDocPanelOpen()">
-                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                  </button>
+                    <button id="newDocButton" type="button" name="button" ng-click="goto('/new')">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
                 </div>
                 <div class="search-wrapper">
-                  <input id="search" type="text" name="name" placeholder="Search" ng-model="searchTitle.$">
-                  <button id="searchButton" type="button" name="button">Search</button>
+                    <input id="search" type="text" name="name" placeholder="Search" ng-model="searchTitle.$">
+                    <button id="searchButton" type="button" name="button">Search</button>
                 </div>
             </div>
         </header>
-
+        <!-- END OF Hedaer & Search  -->
         <div class="container">
             <!-- Lodaer -->
             <div class="loader">
@@ -50,94 +53,10 @@
                 <div class="dot"></div>
                 <div class="dot"></div>
             </div>
-            <!-- New doc panel -->
-            <section id="newDocPanel" ng-controller="NewDocController">
-                <form name="newDocForm" ng-submit="postNewDoc()">
-                    <div class="">
-                        <div class="headline">New document</div>
-                        <div class="input-group">
-                            <label for="name">Title</label>
-                            <input id="name" class="form-control" type="text" ng-model="docTitle"/>
-                        </div>
-                        <div class="input-group">
-                            <label for="message">Code</label>
-                            <textarea id="code" class="form-control" ng-model="docCode"></textarea>
-                        </div>
-                        <div class="input-group">
-                            <label for="message">Content</label>
-                            <textarea id="message" class="form-control" ng-model="docContent"></textarea>
-                        </div>
-                        <button type="submit" class="send-button">Post</button>
-                    </div>
-                </form>
-            </section>
-            <!-- Docs container -->
-            <section id="docs" class="row">
-                <div class="tools">
-                    <button id="docsOrderTime" type="button" class="btn">
-                        <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
-                    </button>
-                    <button id="docsGridview" type="button" class="btn">
-                        <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
-                    </button>
-                    <button type="button" class="btn">Favorites
-                        <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
-                    </button>
-                </div>
-                <article class="doc col-md-6 col-sm-12" ng-repeat="doc in docs | orderBy: '-time' | filter:searchTitle" id="doc{{ doc.$id }}" ng-cloak>
-                    <div class="wrapper">
-                        <header>
-                            <h3>{{ doc.title }}</h3>
-                            <span class="timestamp">{{ doc.time | date : format : timezone}}</span>
-                            <span class="creator">{{ doc.creator }}</span>
-                            <button type="button" class="doc-menu" ng-click="toggleMenu(this)">
-                                <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
-                            </button>
-                            <ul class="doc-menu {{this.doc.$id}}">
-                                <li>
-                                    <button type="button" class="doc-menu-permalink">
-                                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="doc-menu-edit">
-                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="doc-menu-remove" ng-click="deleteDoc(doc.$id, doc.creator)">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </header>
-                        <div class="content">
-                            <p>
-                                {{ doc.content }}
-                            </p>
-                        </div>
-                        <div class="code">
-                            <p>
-                                <textarea id="doc{{ doc.$id }}-code" rows="8" cols="40" readonly="true">{{ doc.code }}</textarea>
-                            </p>
-                        </div>
-                        <div class="tags">
-                            <ul>
-                                <li class="tag" ng-repeat="tag in tagList"></li>
-                            </ul>
-                        </div>
-                        <div class="extra-menu">
-                            <button type="button" class="btn copy-code" data-clipboard-target="#doc{{ doc.$id }}-code">Copy code
-                                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn">Vote helpful
-                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </section>
+            <!-- Dynamic Content -->
+            <ng-view></ng-view>
+        </div>
+        <!-- Late Script -->
         <script type="text/javascript">
             $(function() {
                 var header = $("header.hero");
@@ -169,5 +88,4 @@
             });
         </script>
     </body>
-
 </html>
