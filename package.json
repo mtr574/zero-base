@@ -12,9 +12,14 @@
     "url": "git+https://github.com/natekonimbo/natekonimbo.github.io.git"
   },
   "author": "Nate",
-  "license": "GNU",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/natekonimbo/natekonimbo.github.io/issues"
   },
-  "homepage": "https://github.com/natekonimbo/natekonimbo.github.io#readme"
+  "homepage": "https://github.com/natekonimbo/natekonimbo.github.io#readme",
+  "main": "Gruntfile.js",
+  "dependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }

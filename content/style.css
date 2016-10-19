@@ -1,4 +1,5 @@
 /* Resets */
+
 html, body {
     font-family: 'Ubuntu Mono', monospace;
 }
@@ -18,7 +19,13 @@ section {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
+
 /*Hedaer & Search*/
+
+header a.base {
+    color: inherit;
+}
+
 header.hero {
     display: block;
     background: #7019a5;
@@ -117,8 +124,12 @@ header .header-tools .search-wrapper button#searchButton {
     padding: 0;
 }
 
+
 /* END OF HEADER */
+
+
 /* Loader */
+
 .loader {
     display: block;
     height: 10px;
@@ -155,7 +166,6 @@ header .header-tools .search-wrapper button#searchButton {
         transform: scale(1);
         opacity: 1;
     }
-
     100% {
         opacity: 0;
     }
@@ -167,14 +177,17 @@ header .header-tools .search-wrapper button#searchButton {
         transform: scale(1);
         opacity: 1;
     }
-
     100% {
         opacity: 0;
     }
 }
 
+
 /*END*/
+
+
 /*Docs container */
+
 #docs .doc {
     max-height: 180px;
     min-height: 370px;
@@ -298,26 +311,48 @@ header .header-tools .search-wrapper button#searchButton {
     margin-top: 8px;
 }
 
+#docs .doc .wrapper .tags ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: right;
+}
+
+#docs .doc .wrapper .tags li {
+    display: inline-block;
+    padding: 5px 8px;
+    margin: 0 2px;
+    border-radius: 0;
+}
+
+
 /* END OF DOC CONTAINER */
+
+
 /* New document */
-#newDocPanel {
+
+.section.narrow {
     display: table;
     width: auto;
     max-width: 300px;
     margin: 0 auto;
 }
 
-#newDocPanel > form {
+.panel {
     padding: 15px 30px;
 }
 
-#newDocPanel > form .headline {
+.panel .headline {
     margin-bottom: 20px;
 }
 
-#newDocPanel > form .headline h3 {
+.panel .headline h3 {
     border-left: 3px solid #d03;
     text-indent: 20px;
+}
+
+.panel input {
+    widows: 100%;
 }
 
 button.btn-purple {
@@ -331,17 +366,36 @@ button.btn-purple:hover {
     color: #fff;
 }
 
+.tags-wrapper {
+    padding: 50px 0 15px;
+}
+
+.tags-wrapper .tag.badge {
+    padding: 5px 8px;
+    margin: 0 2px;
+    border-radius: 0;
+}
+
+.tags-wrapper .tag.badge .tag-remove {
+    border: 0;
+    background: #fff;
+    color: #000;
+}
+
+
 /* Docs tools widget */
+
 .tools {
     padding: 10px;
 }
 
+
 /*Responsive Adaptations*/
+
 @media (max-width: 767px) {
     header.hero {
         height: 180px;
     }
-
     header .search-wrapper {
         max-width: 250px;
     }

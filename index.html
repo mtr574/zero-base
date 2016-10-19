@@ -9,7 +9,7 @@
         <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
         <link rel="stylesheet" href="/content/bootstrap.min.css" media="screen" title="no title">
         <link rel="stylesheet" href="/content/style.css" media="screen" title="no title">
-        <script src="/app/clipboard.min.js"></script>
+        <script type="text/javascript" src="/app/scripts.min.js"></script>
         <script type="text/javascript" src="/app/jquery.min.js"></script>
         <script type="text/javascript" src="/app/angular.min.js"></script>
         <script type="text/javascript" src="/app/angular-route.min.js"></script>
@@ -23,14 +23,14 @@
         <!-- Syntax highlight -->
         <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css"> -->
         <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script> -->
-        <script src="/app/angular-highlightjs.min.js" charset="utf-8"></script>
+        <!-- <script src="/app/angular-highlightjs.min.js" charset="utf-8"></script> -->
     </head>
 
     <body ng-app="nobase" ng-controller="mainController">
         <!-- Hedaer & Search  -->
         <header class="hero">
             <div class="heading">
-                <h1>N0b45e</h1>
+                <h1><a href="/" class="base">N0b45e</a></h1>
                 <h2 class="hidden-xs">Search in the knowledge base</h2>
             </div>
             <div class="header-tools">
@@ -56,36 +56,5 @@
             <!-- Dynamic Content -->
             <ng-view></ng-view>
         </div>
-        <!-- Late Script -->
-        <script type="text/javascript">
-            $(function() {
-                var header = $("header.hero");
-                var docsContainer = $("#docs article");
-                $("#search").focusin(function() {
-                    // Expand header
-                    header.addClass('expand');
-                }).focusout(function() {
-                    // Collapse header
-                    header.removeClass('expand');
-                });
-                // search
-                $("#searchButton").on('click', function() {
-                    console.log("get firebase data");
-                    var docs = firebase.database().ref('docs'),
-                        data;
-                    docs.on('value', function(snapshot) {
-                        data = snapshot.val();
-                    });
-                    $(".container ul").append("<li>" + data[0].username + "</li>");
-                });
-                // tools function
-                $("#docsGridview").on('click', function() {
-                    docsContainer.addClass('col-md-6').removeClass('col-md-12');
-                });
-                // Capture 's' key to focus search input firstTime = false; $(window).on('keydown', function(e) {     if (e.keyCode == 83) {         if (!firstTime) {             e.preventDefault();             $("#search").focus();             firstTime = true; } }
-                // }); Clipboard copy init
-                new Clipboard('.copy-code');
-            });
-        </script>
     </body>
 </html>

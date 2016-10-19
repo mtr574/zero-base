@@ -10,9 +10,13 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl: "pages/new.html",
             controller: "newController"
         })
-        .when("/edit/:docId", {
+        .when("/edit/:docId*", {
             templateUrl: "pages/edit.html",
             controller: "editController"
+        })
+        .when("/view/:docId*", {
+            templateUrl: "pages/view.html",
+            controller: "viewController"
         })
         .otherwise({
             redirectTo: 'pages/err/404.html'
