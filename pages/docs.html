@@ -7,7 +7,7 @@
         <button id="docsGridview" type="button" class="btn">
             <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
         </button>
-        <button type="button" class="btn">Favorites
+        <button type="button" class="btn" ng-click="goto('\bookmark')">Bookmark
             <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
         </button>
     </div>
@@ -15,6 +15,7 @@
         <div class="wrapper box-sha">
             <header>
                 <h3>
+                    <span>{{ doc.cheers }}</span>
                     <a href="/view/{{this.doc.$id}}">{{ doc.title }}</a>
                 </h3>
                 <span class="timestamp">{{ doc.time | date : format : timezone}}</span>
@@ -24,7 +25,8 @@
                 </button>
                 <ul class="doc-menu {{this.doc.$id}}">
                     <li>
-                        <button type="button" class="doc-menu-permalink">
+                        <textarea id="doc{{ doc.$id }}-permalink" rows="8" cols="40" readonly="true" style="width:0;height:0;position:absolute;top:-10px;">/view/{{ doc.$id }}</textarea>
+                        <button type="button" class="doc-menu-permalink copy-permalink" data-clipboard-target="#doc{{ doc.$id }}-permalink">
                             <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
                         </button>
                     </li>
@@ -53,15 +55,15 @@
                 </p>
             </div>
             <div class="row">
-                <div class="extra-menu col-sm-8">
+                <div class="extra-menu col-xs-8">
                     <button type="button" class="btn copy-code" data-clipboard-target="#doc{{ doc.$id }}-code">Copy code
                         <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
                     </button>
-                    <button type="button" class="btn">Vote helpful
+                    <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Vote helpful">Cheers!
                         <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                     </button>
                 </div>
-                <div class="tags col-sm-4">
+                <div class="tags col-xs-4">
                     <ul>
                         <li class="tag badge" ng-repeat="tag in doc.tags">{{ tag.name }}</li>
                     </ul>

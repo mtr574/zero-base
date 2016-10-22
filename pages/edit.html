@@ -13,6 +13,16 @@
                 <input id="name" class="form-control" type="text" ng-model="docData.title"/>
             </div>
             <div class="input-group">
+                <label for="name">Tags</label>
+                <input class="form-control" data-tag-input="" data-ng-model="tagText" data-ng-style="{width: inputWidth}" data-new-tag="addTag()" data-remove-tag="removeTag()" type="text"/>
+                <div class="tags-wrapper">
+                    <div class="tag badge" data-ng-repeat="(id, tag) in doc_tags">
+                        {{ tag.name }}
+                        <button class="tag-remove" data-ng-click="removeTag(id)">&times;</button>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group">
                 <label for="message">Code</label>
                 <textarea id="code" class="form-control" ng-model="docData.code"></textarea>
             </div>

@@ -14,7 +14,7 @@
 // require('./app-ctrl.js');
 // require('./app-service.js');
 // Clipboard module
-require('./clipboard.min.js');
+//require('./clipboard.min.js');
 
 $(function() {
     var header = $("header.hero");
@@ -40,7 +40,10 @@ $(function() {
     $("#docsGridview").on('click', function() {
         docsContainer.addClass('col-md-6').removeClass('col-md-12');
     });
+    // tooltips
+    $('[data-toggle="tooltip"]').tooltip();
     // Capture 's' key to focus search input firstTime = false; $(window).on('keydown', function(e) {     if (e.keyCode == 83) {         if (!firstTime) {             e.preventDefault();             $("#search").focus();             firstTime = true; } }
     // }); Clipboard copy init
     new Clipboard('.copy-code');
+    new Clipboard('.copy-permalink');
 });

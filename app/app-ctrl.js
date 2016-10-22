@@ -14,7 +14,7 @@ app.controller("mainController", function($scope, $location, $firebaseArray, con
     }
 
     // Object
-    var ref = new Firebase(config.fbaseURL);
+    var ref = new Firebase(config.fbaseDocRef);
 
     // Loader
     ref.on("value", function(status) {
@@ -55,9 +55,10 @@ app.controller("newController", function($scope, $firebaseArray, config, routerS
         // END
 
     // Settings
-    var ref = new Firebase(config.fbaseURL);
+    var ref = new Firebase(config.fbaseDocRef);
     $scope.messages = $firebaseArray(ref);
 
+    var refTags = new Firebase(config.fbaseTagsRef);
     $scope.doc_tags = []
 
     // Add new doc
@@ -75,7 +76,8 @@ app.controller("newController", function($scope, $firebaseArray, config, routerS
             tags: $scope.doc_tags,
             creator: doc_creator,
             code: doc_code,
-            content: doc_content
+            content: doc_content,
+            cheers: 0
         }).then(function() {
             // done
             routerService.goto('/');
@@ -107,13 +109,6 @@ app.directive("tagInput", function() {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-            scope.inputWidth = 300;
-            // Watch width changes
-            scope.$watch(attrs.ngModel, function(value) {
-                if (value != undefined) {
-
-                }
-            });
             // Key press function
             element.bind('keydown', function(event) {
                 if (event.which == 9)
@@ -138,10 +133,42 @@ app.controller('editController', function($scope, $routeParams, $firebaseObject,
     var docId = $routeParams.docId;
     $scope.docId = docId;
 
-    var ref = new Firebase(config.fbaseURL + '/' + docId);
+    var ref = new Firebase(config.fbaseDocRef + '/' + docId);
     var specific_doc = $firebaseObject(ref);
     $scope.doc = specific_doc;
     specific_doc.$bindTo($scope, "docData");
+
+    var refTags = new Firebase(config.fbaseDocRef + '/' + docId + '/tags');
+    $scope.doc_tags = [];
+
+    tags = [];
+    refTags.on('value', function(snap) {
+        $scope.doc_tags = snap.val();
+        tags = snap.val();
+    });
+
+    // Add tag function
+    $scope.addTag = function() {
+        if ($scope.tagText.length != 0) {
+            $scope.doc_tags.push({
+                name: $scope.tagText
+            });
+            tags.push({
+                name: $scope.tagText
+            });
+            refTags.set(tags);
+            $scope.tagText = '';
+        }
+    };
+
+    // Remove tag function
+    $scope.removeTag = function(tagId) {
+        if ($scope.doc_tags.length != 0) {
+            $scope.doc_tags.splice(tagId, 1);
+            tags.splice(tagId, 1);
+            refTags.set(tags);
+        }
+    };
 });
 
 /**
@@ -152,9 +179,17 @@ app.controller('viewController', function($scope, $routeParams, $firebaseObject,
     var docId = $routeParams.docId;
     $scope.docId = docId;
 
-    var ref = new Firebase(config.fbaseURL + '/' + docId);
+    var ref = new Firebase(config.fbaseDocRef + '/' + docId);
     var specific_doc = $firebaseObject(ref);
     $scope.doc = specific_doc;
     specific_doc.$bindTo($scope, "docData");
+
+});
+
+/**
+ * Bookmark controller
+ */
+app.controller('bookmarkController', function($scope) {
+
 
 });
