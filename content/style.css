@@ -25,7 +25,7 @@ header a.base {
 
 header.hero {
     display: block;
-    background: #7019a5;
+    background: #8e1ed3;
     height: 220px;
     width: 100%;
 }
@@ -244,7 +244,7 @@ header .header-tools .search-wrapper button#searchButton {
     margin-top: 2px;
 }
 
-#docs .doc button.doc-menu, #docs .doc ul.doc-menu button {
+#docs .doc button.doc-menu, #docs .doc ul.doc-menu button, #docs .doc button.doc-bookmark-add {
     width: 28px;
     height: 31px;
     border: 0;
@@ -274,24 +274,24 @@ header .header-tools .search-wrapper button#searchButton {
 }
 
 #docs .doc ul.doc-menu {
-    /*     display: none; */
-    /*     opacity: 0; */
     float: right;
     list-style-type: none;
     padding: 3px 0;
     margin: 0;
-    background: #d01;
+    background: #06a779;
     position: absolute;
     right: -28px;
     transition: all 250ms ease;
 }
 
 #docs .doc ul.doc-menu.poped {
-    /*     display: block; */
-    /* opacity: 1; */
     right: 0;
     transition: all 250ms ease;
     overflow: hidden;
+}
+
+#docs .doc ul.doc-menu a:focus {
+    background: transparent;
 }
 
 #docs .doc ul.doc-menu span {
@@ -326,9 +326,20 @@ header .header-tools .search-wrapper button#searchButton {
 
 #docs .doc .wrapper .tags li {
     display: inline-block;
-    padding: 5px 8px;
+    padding: 5px 6px 5px 10px;
     margin: 0 2px;
     border-radius: 0;
+    font-size: 12.5px;
+    font-weight: normal;
+}
+
+#docs .doc .wrapper .tags li:before {
+    content: "\e041";
+    font-family: 'Glyphicons Halflings';
+    line-height: 1;
+    position: relative;
+    top: 2px;
+    left: -3px;
 }
 
 /* END OF DOC CONTAINER */
@@ -355,7 +366,7 @@ header .header-tools .search-wrapper button#searchButton {
 
 button.btn-purple {
     background: transparent;
-    border: 1px solid #673AB7;
+    border-color: #673AB7;
     color: #673AB7;
 }
 

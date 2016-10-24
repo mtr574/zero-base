@@ -22,6 +22,10 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl: "pages/bookmark.html",
             controller: "bookmarkController"
         })
+        .when("/tags", {
+            templateUrl: "pages/tags.html",
+            controller: "tagsController"
+        })
         .otherwise({
             redirectTo: 'pages/err/404.html'
         });
