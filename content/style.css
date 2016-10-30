@@ -6,7 +6,15 @@ html, body {
 *:focus {
     border: 0;
     outline: 0;
-    background: #E3F2FD;
+}
+
+a:focus, button:focus {
+    border: 0;
+    outline: rgba(20, 0, 0, 0.5);
+}
+
+input[type=text]:focus, textarea:focus {
+    background: rgba(20, 0, 0, 0.5);
 }
 
 section {
@@ -30,26 +38,18 @@ header.hero {
     width: 100%;
 }
 
-header.hero.expand {
-    height: 160px;
+header.hero.collapse {
+    height: 100px;
 }
 
-header.hero, header.hero.expand, header .heading {
-    transition: all 250ms ease-in-out;
+header * {
+    transition: width 250ms ease-in-out;
 }
 
 header .heading {
     color: #FFF;
     text-align: center;
     padding-top: 20px;
-}
-
-header.expand .heading {
-    padding-top: 0;
-}
-
-header.expand .heading h1, header.expand .heading h2 {
-    margin: 0;
 }
 
 header .heading h6 {
@@ -120,6 +120,34 @@ header .header-tools .search-wrapper button#searchButton {
     background-size: 20px;
     padding: 0;
 }
+
+/* Fullscreen search */
+
+.header-tools.full-screen {
+    position: static;
+}
+
+.header-tools.full-screen .search-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.header-tools.full-screen .search-wrapper input {
+    border-radius: 0;
+    padding: 1em;
+    font-size: 3.3em;
+}
+
+.header-tools.full-screen .search-wrapper input:focus {
+    background: #fff;
+}
+
+.header-tools.full-screen .search-wrapper #searchButton {
+    display: none;
+}
+
 
 /* END OF HEADER */
 /* Loader */
@@ -253,6 +281,10 @@ header .header-tools .search-wrapper button#searchButton {
     background: transparent;
 }
 
+#docs .doc button.doc-menu:focus span {
+    background: rgba(6, 167, 121, 0.45);
+}
+
 #docs .doc ul.doc-menu button:focus {
     transition: all 250ms ease;
     opacity: 0.6;
@@ -322,15 +354,17 @@ header .header-tools .search-wrapper button#searchButton {
     padding: 0;
     list-style: none;
     float: right;
+    display: inline-table;
 }
 
 #docs .doc .wrapper .tags li {
     display: inline-block;
     padding: 5px 6px 5px 10px;
-    margin: 0 2px;
+    margin: 0 2px 4px;
     border-radius: 0;
-    font-size: 12.5px;
+    font-size: 12px;
     font-weight: normal;
+    float: right;
 }
 
 #docs .doc .wrapper .tags li:before {

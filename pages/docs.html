@@ -4,7 +4,7 @@
         <button id="docsOrderTime" type="button" class="btn">
             <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
         </button>
-        <button id="docsGridview" type="button" class="btn">
+        <button id="docsGridview" type="button" class="btn" ng-click="toggleGridView()">
             <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
         </button>
         <button type="button" class="btn" ng-click="goto('\bookmark')">Bookmarks
@@ -12,7 +12,7 @@
         </button>
         <a href="#" ng-click="goto('/tags')">Tags</a>
     </div>
-    <article class="doc col-md-6 col-sm-12" ng-repeat="doc in docs | orderBy: '-time' | filter:searchTitle" id="doc{{ doc.$id }}" ng-cloak>
+    <article class="doc col-sm-12" ng-repeat="doc in docs | orderBy: '-time' | filter:searchFilter" id="doc{{ doc.$id }}" ng-cloak>
         <div class="wrapper box-sha">
             <header>
                 <h3>

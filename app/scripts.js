@@ -19,22 +19,13 @@
 $(function() {
     var header = $("header.hero");
     var docsContainer = $("#docs article");
+    // Fullscreen search on focus
     $("#search").focusin(function() {
-        // Expand header
-        header.addClass('expand');
+        $(".header-tools").addClass("full-screen");
+        header.addClass('collapse');
     }).focusout(function() {
-        // Collapse header
-        header.removeClass('expand');
-    });
-    // search
-    $("#searchButton").on('click', function() {
-        console.log("get firebase data");
-        var docs = firebase.database().ref('docs'),
-            data;
-        docs.on('value', function(snapshot) {
-            data = snapshot.val();
-        });
-        $(".container ul").append("<li>" + data[0].username + "</li>");
+        $(".header-tools").removeClass("full-screen");
+        header.removeClass('collapse');
     });
     // tools function
     $("#docsGridview").on('click', function() {

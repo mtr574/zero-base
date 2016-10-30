@@ -8,6 +8,11 @@ app.controller("mainController", function($scope, config, $location, $firebaseOb
         routerService.goto(path)
     }
 
+    // Toggle grid view
+    $scope.toggleGridView = function() {
+      $("#docs > article").toggleClass("col-sm-12").toggleClass("col-sm-6");
+    }
+
     // Doc widget menu
     $scope.toggleMenu = function(a) {
         $('ul.doc-menu.' + a.doc.$id).toggleClass('poped');
@@ -39,21 +44,34 @@ app.controller("mainController", function($scope, config, $location, $firebaseOb
         }
     }
 
-    // Add to bookmark
+    /**
+     * Add exist document to bookmark array
+     */
     $scope.bookmarkAdd = function(docId) {
-        var ref = new Firebase(config.fbaseDocRef + '/' + docId);
-        var obj = $firebaseObject(ref);
-        // destroying other values!!!
-        // obj.heyho = true;
-        // obj.$save();
-
+        // Bookmarks object
         var ref = new Firebase(config.fbaseBookmarkedRef);
-        var bookmarkList = $firebaseArray(ref);
-        bookmarkList.$add({
-            doc_id: docId
-        }).then(function(ref) {
-            console.log('added to bookmarks, ref: ' + ref);
+        var bookmarkList = $firebaseObject(ref);
+        isBookmarked = true;
+        // After load test for exist record
+        bookmarkList.$loaded().then(function() {
+            angular.forEach(bookmarkList, function(value, key) {
+                if (value.doc_id == docId) {
+                    // Found doc, don't add
+                    alert('already in bookmarks');
+                } else {
+                    addBookmark();
+                }
+            });
         });
+
+        function addBookmark() {
+            var bookmarkList = $firebaseArray(ref);
+            bookmarkList.$add({
+                doc_id: docId
+            }).then(function(ref) {
+                alert('added to bookmarks, ref: ' + ref);
+            });
+        }
     }
 });
 
@@ -215,11 +233,9 @@ app.controller('viewController', function($scope, $routeParams, $firebaseObject,
  * Bookmark controller
  */
 app.controller('bookmarkController', function($scope, config, $firebaseObject) {
-
     var ref = new Firebase(config.fbaseBookmarkedRef);
     var bookmarked = $firebaseObject(ref);
     $scope.bookmarkList = bookmarked;
-
 });
 
 /**
