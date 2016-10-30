@@ -1,0 +1,39 @@
+<!-- Edit doc panel -->
+<section id="editDocPanel" class="section narrow">
+    <div name="editDocForm" class="panel box-sha">
+        <div class="row">
+            <div class="headline">
+                <h3>Editing
+                    <h5>{{ docId }}</h5>
+                    <h6>by {{ doc.creator }}</h6>
+                </h3>
+            </div>
+            <div class="input-group">
+                <label for="name">Title</label>
+                <input id="name" class="form-control" type="text" ng-model="docData.title"/>
+            </div>
+            <div class="input-group">
+                <label for="name">Tags</label>
+                <input class="form-control" data-tag-input="" data-ng-model="tagText" data-ng-style="{width: inputWidth}" data-new-tag="addTag()" data-remove-tag="removeTag()" type="text"/>
+                <div class="tags-wrapper">
+                    <div class="tag badge" data-ng-repeat="(id, tag) in doc_tags">
+                        {{ tag.name }}
+                        <button class="tag-remove" data-ng-click="removeTag(id)">&times;</button>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="message">Code</label>
+                <textarea id="code" class="form-control" ng-model="docData.code"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="message">Content</label>
+                <textarea id="message" class="form-control" ng-model="docData.content"></textarea>
+            </div>
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default" name="button" ng-click="goto('/')">Back</button>
+                <i>all data will be saved on change</i>
+            </div>
+        </div>
+    </div>
+</section>

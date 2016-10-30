@@ -1,0 +1,29 @@
+<!-- View doc panel -->
+<section id="editDocPanel" class="section narrow">
+    <div name="editDocForm" class="panel box-sha">
+        <div class="row">
+            <div class="headline">
+                <h3>Viewing
+                    <h5>{{ docId }}</h5>
+                    <h6>by {{ doc.creator }}</h6>
+                </h3>
+            </div>
+            <div class="input-group">
+                <label for="name">Title</label>
+                <input id="name" class="form-control" type="text" ng-model="docData.title" readonly="true"/>
+            </div>
+            <div class="input-group">
+                <label for="message">Code</label>
+                <textarea id="code" class="form-control" ng-model="docData.code" readonly="true"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="message">Content</label>
+                <textarea id="message" class="form-control" ng-model="docData.content" readonly="true"></textarea>
+            </div>
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default" name="button" ng-click="goto('/')">Back</button>
+                <i>all data will be saved on change</i>
+            </div>
+        </div>
+    </div>
+</section>
