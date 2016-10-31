@@ -1,11 +1,16 @@
 /**
  * Retrieve docs
  */
-app.controller("mainController", function($scope, $location, $firebaseArray, config, routerService) {
+app.controller("mainController", function($scope, config, $location, $firebaseObject, $firebaseArray, $firebaseUtils, routerService) {
 
     // Router goto helper
     $scope.goto = function(path) {
         routerService.goto(path)
+    }
+
+    // Toggle grid view
+    $scope.toggleGridView = function() {
+      $("#docs > article").toggleClass("col-sm-12").toggleClass("col-sm-6");
     }
 
     // Doc widget menu
@@ -13,7 +18,6 @@ app.controller("mainController", function($scope, $location, $firebaseArray, con
         $('ul.doc-menu.' + a.doc.$id).toggleClass('poped');
     }
 
-    // Object
     var ref = new Firebase(config.fbaseDocRef);
 
     // Loader
@@ -32,12 +36,41 @@ app.controller("mainController", function($scope, $location, $firebaseArray, con
 
     // Delete an node from array
     $scope.deleteDoc = function(key, creator) {
-        console.log(key);
-        console.log(creator);
         // Show delete dialog
         var docCreator = prompt("If you so sure, enter doc creator: ");
         if (docCreator == creator) {
-            ref.child(key).remove();
+            // don't delete but unshow!
+            // ref.child(key).remove();
+        }
+    }
+
+    /**
+     * Add exist document to bookmark array
+     */
+    $scope.bookmarkAdd = function(docId) {
+        // Bookmarks object
+        var ref = new Firebase(config.fbaseBookmarkedRef);
+        var bookmarkList = $firebaseObject(ref);
+        isBookmarked = true;
+        // After load test for exist record
+        bookmarkList.$loaded().then(function() {
+            angular.forEach(bookmarkList, function(value, key) {
+                if (value.doc_id == docId) {
+                    // Found doc, don't add
+                    alert('already in bookmarks');
+                } else {
+                    addBookmark();
+                }
+            });
+        });
+
+        function addBookmark() {
+            var bookmarkList = $firebaseArray(ref);
+            bookmarkList.$add({
+                doc_id: docId
+            }).then(function(ref) {
+                alert('added to bookmarks, ref: ' + ref);
+            });
         }
     }
 });
@@ -78,8 +111,9 @@ app.controller("newController", function($scope, $firebaseArray, config, routerS
             code: doc_code,
             content: doc_content,
             cheers: 0
-        }).then(function() {
+        }).then(function(ref) {
             // done
+            $scope.addToTagList(ref.path.u[1]);
             routerService.goto('/');
         });
     };
@@ -100,6 +134,16 @@ app.controller("newController", function($scope, $firebaseArray, config, routerS
             $scope.doc_tags.splice(tagId, 1);
         }
     };
+
+    // Save doc in tag array
+    $scope.addToTagList = function(docId) {
+        var ref = new Firebase(config.fbaseTagsRef);
+        var tagDocList = $firebaseArray(ref);
+        tagDocList.$add({
+            doc_id: docId,
+            doc_tags: $scope.doc_tags
+        });
+    }
 });
 
 /**
@@ -140,7 +184,6 @@ app.controller('editController', function($scope, $routeParams, $firebaseObject,
 
     var refTags = new Firebase(config.fbaseDocRef + '/' + docId + '/tags');
     $scope.doc_tags = [];
-
     tags = [];
     refTags.on('value', function(snap) {
         $scope.doc_tags = snap.val();
@@ -189,7 +232,19 @@ app.controller('viewController', function($scope, $routeParams, $firebaseObject,
 /**
  * Bookmark controller
  */
-app.controller('bookmarkController', function($scope) {
+app.controller('bookmarkController', function($scope, config, $firebaseObject) {
+    var ref = new Firebase(config.fbaseBookmarkedRef);
+    var bookmarked = $firebaseObject(ref);
+    $scope.bookmarkList = bookmarked;
+});
 
+/**
+ * Bookmark controller
+ */
+app.controller('tagsController', function($scope, config, $firebaseArray) {
 
+    var ref = new Firebase(config.fbaseTagsRef);
+    var tags = $firebaseArray(ref);
+
+    $scope.tagsList = tags;
 });
