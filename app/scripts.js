@@ -17,8 +17,12 @@
 //require('./clipboard.min.js');
 
 $(function() {
-    var header = $("header.hero");
-    var docsContainer = $("#docs article");
+    var header = $("header.hero"),
+        docsContainer = $("#docs article");
+    // Alert widget
+    function sideAlert(msg) {
+        console.log('sideAlert' + msg);
+    }
     // Fullscreen search on focus
     $("#search").focusin(function() {
         $(".header-tools").addClass("full-screen");
@@ -31,10 +35,51 @@ $(function() {
     $("#docsGridview").on('click', function() {
         docsContainer.addClass('col-md-6').removeClass('col-md-12');
     });
+    // Aside sticky panel
+    var isStuck = false,
+        panel_Yoffset = $('.side-panel').offset().top,
+        panel_width = $('.side-panel').width();
+    $(window).on('scroll', function(e) {
+        var window_Yoffset = $(window).scrollTop();
+        if (window_Yoffset >= panel_Yoffset) {
+            if (!isStuck) {
+                $('.side-panel').addClass('sticky').css({
+                    'width': panel_width
+                });
+                isStuck = true;
+            }
+        } else {
+            $('.side-panel').removeClass('sticky');
+            isStuck = false;
+        }
+    });
     // tooltips
     $('[data-toggle="tooltip"]').tooltip();
-    // Capture 's' key to focus search input firstTime = false; $(window).on('keydown', function(e) {     if (e.keyCode == 83) {         if (!firstTime) {             e.preventDefault();             $("#search").focus();             firstTime = true; } }
-    // }); Clipboard copy init
+    // Capture 's' key to focus search input
+    firstTime = false;
+    $(window).on('keydown', function(e) {
+        switch (e.keyCode) {
+            case 83:
+                if (!firstTime) {
+                    e.preventDefault();
+                    $("#search").focus();
+                    firstTime = true;
+                }
+                break;
+            case 27:
+                $("#search").val(null).blur();
+                break;
+            default:
+        }
+    });
+
+    // Clipboard copy handlers
+    $('.copy-code').on('click', function() {
+        sideAlert('Code copied to clipboard');
+    });
+    $('.copy-permalink').on('click', function() {
+        sideAlert('Link copied to clipboard');
+    });
     new Clipboard('.copy-code');
     new Clipboard('.copy-permalink');
 });

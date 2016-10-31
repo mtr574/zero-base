@@ -1,3 +1,9 @@
+<!--
+____  ____  ____   __       ____   __   ____  ____
+(__  )(  __)(  _ \ /  \  ___(  _ \ / _\ / ___)(  __)
+/ _/  ) _)  )   /(  O )(___)) _ (/    \\___ \ ) _)
+(____)(____)(__\_) \__/     (____/\_/\_/(____/(____)
+-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,7 +11,7 @@
         <meta charset="utf-8">
         <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>n0b45e</title>
+        <title>Zero-Base | Knowledge sharing space</title>
         <!-- Styles -->
         <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
         <link rel="stylesheet" href="/content/bootstrap.min.css" media="screen" title="no title">
@@ -22,7 +28,6 @@
         <script type="text/javascript" src="/app/app-ctrl.js"></script>
         <script type="text/javascript" src="/app/app-service.js"></script>
         <script type="text/javascript" src="/app/clipboard.min.js"></script>
-        <script type="text/javascript" src="/app/scripts.min.js"></script>
         <!-- Syntax highlight -->
         <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css"> -->
         <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script> -->
@@ -34,39 +39,57 @@
         <header class="hero">
             <div class="heading">
                 <h1>
-                    <a href="/" class="base">n0b45e</a>
+                    <a href="/" class="base">Zero-Base</a>
                 </h1>
-                <h2 class="hidden-xs">Search in the knowledge base</h2>
+                <h3 class="hidden-xs">Search in the knowledge base</h3>
             </div>
             <div class="header-tools">
                 <div class="tools-wrapper">
-                    <button id="newDocButton" type="button" name="button" ng-click="goto('/new')">
+                    <button id="newDocButton" class="box-sha" type="button" name="button" ng-click="goto('/new')">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </button>
                 </div>
                 <div class="search-wrapper">
-                    <input id="search" type="text" name="name" placeholder="Search" ng-model="searchFilter.$">
+                    <input id="search" class="box-sha" type="text" name="name" placeholder="Search" ng-model="searchFilter.$">
                     <button id="searchButton" type="button" name="button">Search</button>
                 </div>
             </div>
         </header>
         <!-- END OF Hedaer & Search  -->
-        <div class="container">
+        <div class="container-fluid">
             <!-- Lodaer -->
             <div class="loader">
                 <div class="dot"></div>
                 <div class="dot"></div>
                 <div class="dot"></div>
             </div>
-            <!-- Dynamic Content -->
-            <ng-view class="col-md-10"></ng-view>
-            <aside>
-                <div class="row">
-                    <div class="col-md-2">
-                        aside menu
-                    </div>
+            <div class="row">
+                <div class="tools">
+                    <button id="docsOrderTime" type="button" class="btn">
+                        <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+                    </button>
+                    <button id="docsGridview" type="button" class="btn" ng-click="toggleGridView()">
+                        <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn" ng-click="goto('\bookmark')">Bookmarks
+                        <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
+                    </button>
+                    <a href="#" ng-click="goto('/tags')">Tags</a>
                 </div>
-            </aside>
+                <ng-view class="col-md-10"></ng-view>
+                <aside class="col-md-2">
+                    <section class="side-panel">
+                        <div class="navigation box-sha">
+                            <ul>
+                                <li>aside menu</li>
+                                <li>aside menu</li>
+                                <li>aside menu</li>
+                            </ul>
+                        </div>
+                    </section>
+                </aside>
+            </div>
         </div>
+        <script type="text/javascript" src="/app/scripts.min.js"></script>
     </body>
 </html>

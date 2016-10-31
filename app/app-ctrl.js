@@ -37,7 +37,7 @@ app.controller("mainController", function($scope, config, $location, $firebaseOb
     // Delete an node from array
     $scope.deleteDoc = function(key, creator) {
         // Show delete dialog
-        var docCreator = prompt("If you so sure, enter doc creator: ");
+        var docCreator = prompt("If you so sure, enter the name of the author: ");
         if (docCreator == creator) {
             // don't delete but unshow!
             // ref.child(key).remove();

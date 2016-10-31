@@ -17,13 +17,19 @@ input[type=text]:focus, textarea:focus {
     background: rgba(20, 0, 0, 0.5);
 }
 
+.container-fluid {
+    padding-right: 3em;
+    padding-left: 3em;
+    padding-top: 1em;
+}
+
 section {
     padding-top: 10px;
 }
 
 .box-sha {
     border-top: 1px solid rgba(0, 0, 0, 0.16);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 1px 4px rgba(0, 0, 0, 0.23);
 }
 
 /*Hedaer & Search*/
@@ -33,9 +39,17 @@ header a.base {
 
 header.hero {
     display: block;
-    background: #8e1ed3;
-    height: 220px;
+    height: 210px;
     width: 100%;
+    background: #8e1ed3;
+    background: rgba(153,73,188,0.98);
+    background: -moz-linear-gradient(45deg, rgba(153,73,188,0.98) 0%, rgba(153,73,188,0.98) 22%, rgba(153,73,188,0.98) 31%, rgba(142,30,211,0.99) 51%, rgba(152,70,190,1) 76%, rgba(153,73,188,1) 78%, rgba(161,51,230,1) 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(153,73,188,0.98)), color-stop(22%, rgba(153,73,188,0.98)), color-stop(31%, rgba(153,73,188,0.98)), color-stop(51%, rgba(142,30,211,0.99)), color-stop(76%, rgba(152,70,190,1)), color-stop(78%, rgba(153,73,188,1)), color-stop(100%, rgba(161,51,230,1)));
+    background: -webkit-linear-gradient(45deg, rgba(153,73,188,0.98) 0%, rgba(153,73,188,0.98) 22%, rgba(153,73,188,0.98) 31%, rgba(142,30,211,0.99) 51%, rgba(152,70,190,1) 76%, rgba(153,73,188,1) 78%, rgba(161,51,230,1) 100%);
+    background: -o-linear-gradient(45deg, rgba(153,73,188,0.98) 0%, rgba(153,73,188,0.98) 22%, rgba(153,73,188,0.98) 31%, rgba(142,30,211,0.99) 51%, rgba(152,70,190,1) 76%, rgba(153,73,188,1) 78%, rgba(161,51,230,1) 100%);
+    background: -ms-linear-gradient(45deg, rgba(153,73,188,0.98) 0%, rgba(153,73,188,0.98) 22%, rgba(153,73,188,0.98) 31%, rgba(142,30,211,0.99) 51%, rgba(152,70,190,1) 76%, rgba(153,73,188,1) 78%, rgba(161,51,230,1) 100%);
+    background: linear-gradient(45deg, rgba(153,73,188,0.98) 0%, rgba(153,73,188,0.98) 22%, rgba(153,73,188,0.98) 31%, rgba(142,30,211,0.99) 51%, rgba(152,70,190,1) 76%, rgba(153,73,188,1) 78%, rgba(161,51,230,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9949bc', endColorstr='#a133e6', GradientType=1 );
 }
 
 header.hero.collapse {
@@ -49,7 +63,7 @@ header * {
 header .heading {
     color: #FFF;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 15px;
 }
 
 header .heading h6 {
@@ -60,21 +74,21 @@ header .header-tools {
     display: table;
     position: relative;
     width: auto;
-    min-width: 350px;
-    margin: 30px auto 0;
+    min-width: 330px;
+    margin: 25px auto 0;
 }
 
 header .header-tools .tools-wrapper {
     display: inline-block;
-    width: 30%;
+    width: 20%;
     padding-right: 50px;
-    float: left;
+    /* float: left; */
 }
 
 header .header-tools .search-wrapper {
     display: inline-block;
-    float: right;
-    width: 70%;
+    /* float: right; */
+    width: 80%;
     position: relative;
 }
 
@@ -84,7 +98,7 @@ header .search-wrapper input[type="text"] {
     width: 100%;
     padding-left: 10px;
     font-size: 18px;
-    border-radius: 3px;
+    border-radius: 2px;
     float: right;
 }
 
@@ -100,7 +114,7 @@ header .header-tools button#newDocButton {
     left: 0;
     background: #FFF;
     font-size: 18px;
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 header .header-tools button#newDocButton span {
@@ -122,7 +136,6 @@ header .header-tools .search-wrapper button#searchButton {
 }
 
 /* Fullscreen search */
-
 .header-tools.full-screen {
     position: static;
 }
@@ -147,7 +160,6 @@ header .header-tools .search-wrapper button#searchButton {
 .header-tools.full-screen .search-wrapper #searchButton {
     display: none;
 }
-
 
 /* END OF HEADER */
 /* Loader */
@@ -206,6 +218,26 @@ header .header-tools .search-wrapper button#searchButton {
 }
 
 /*END*/
+/* A side panel */
+aside {
+}
+
+aside section.side-panel {
+}
+
+aside section.side-panel.sticky {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-right: 42px;
+}
+
+aside section.side-panel ul {
+    list-style-type: none;
+    padding: 1em;
+}
+
+/*END*/
 /*Docs container */
 #docs .doc {
     max-height: 180px;
@@ -217,7 +249,7 @@ header .header-tools .search-wrapper button#searchButton {
 
 #docs .doc .wrapper {
     background: #ffffff;
-    border-radius: 3px;
+    border-radius: 2px;
     position: relative;
     overflow: hidden;
     min-height: 120px;
@@ -228,6 +260,7 @@ header .header-tools .search-wrapper button#searchButton {
     height: 45px;
     overflow: hidden;
     border-radius: 3px;
+    margin-bottom: 15px;
 }
 
 #docs .doc .wrapper header h3 {
@@ -236,7 +269,7 @@ header .header-tools .search-wrapper button#searchButton {
     line-height: 50px;
 }
 
-#docs .doc .wrapper header h3 span {
+#docs .doc .wrapper header h3 span.cheers {
     color: #000;
     background: #ddd;
     padding: 2px 4px;
@@ -244,28 +277,24 @@ header .header-tools .search-wrapper button#searchButton {
     border-radius: 2px;
 }
 
-#docs .doc span.timestamp, #docs .doc span.creator, #docs .doc button.doc-menu {
+#docs .doc .wrapper header h3 span.info {
+    font-size: 14px;
+    padding: 2px 0;
+    color: #b2af86;
+}
+
+#docs .doc .wrapper header h3 span.info:before {
+    content: '['
+}
+
+#docs .doc .wrapper header h3 span.info:after {
+    content: ']'
+}
+
+#docs .doc button.doc-menu {
     position: absolute;
     right: 0;
     top: 0;
-}
-
-#docs .doc span.timestamp, #docs .doc span.creator {
-    color: #1973a0;
-    text-align: left;
-    width: 115px;
-    padding: 2px 0 2px 7px;
-    border-left: 3px solid #EEE;
-    margin-right: 20px;
-    top: 15px;
-}
-
-#docs .doc span.timestamp {
-    top: 30px;
-}
-
-#docs .doc span.creator {
-    padding: 2px 0 2px 7px;
 }
 
 #docs .doc button.doc-menu {
@@ -285,7 +314,7 @@ header .header-tools .search-wrapper button#searchButton {
     background: rgba(6, 167, 121, 0.45);
 }
 
-#docs .doc ul.doc-menu button:focus {
+#docs .doc ul.doc-menu *:focus {
     transition: all 250ms ease;
     opacity: 0.6;
 }
@@ -314,6 +343,7 @@ header .header-tools .search-wrapper button#searchButton {
     position: absolute;
     right: -28px;
     transition: all 250ms ease;
+    z-index: 10;
 }
 
 #docs .doc ul.doc-menu.poped {
@@ -334,10 +364,27 @@ header .header-tools .search-wrapper button#searchButton {
 }
 
 #docs .doc .wrapper .code {
-    background: #eee;
-    border-radius: 3px;
-    padding-left: 12px;
-    border-left: 5px solid #000;
+    padding-left: 15px;
+    background: #f2f2f2;
+    border-left: 5px solid #7761bc;
+    color: #d03;
+    border-radius: 1px;
+    position: relative;
+}
+
+#docs .doc .wrapper .code:after {
+    content: '';
+    width: 98%;
+    height: 30px;
+    background: rgba(238, 238, 238, 0.7);
+    position: absolute;
+    top: auto;
+    bottom: 0;
+}
+
+#docs .doc .wrapper .code.invert {
+    background: #000;
+    color: #fff;
 }
 
 #docs .doc .wrapper .code textarea {
@@ -361,7 +408,7 @@ header .header-tools .search-wrapper button#searchButton {
     display: inline-block;
     padding: 5px 6px 5px 10px;
     margin: 0 2px 4px;
-    border-radius: 0;
+    border-radius: 2px;
     font-size: 12px;
     font-weight: normal;
     float: right;

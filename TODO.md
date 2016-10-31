@@ -1,6 +1,6 @@
 ###TODO List
 
-1. delete search text with button
+1. cache last 10 search queries & opt auto complete
 2. focus search input on page load
 3. add statistic small widget to div.tools - with total posts, total per tag
 4. add statistic page with full data
