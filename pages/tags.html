@@ -1,0 +1,10 @@
+<ul>
+    <li ng-repeat="tag in tagsList">
+        {{ tag.doc_id }}
+        <ul>
+            <li ng-repeat="tags in tag">
+                {{ tags }}
+            </li>
+        </ul>
+    </li>
+</ul>

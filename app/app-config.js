@@ -6,5 +6,6 @@ var app = angular.module("nobase", ["ngRoute", "firebase"]);
 app.constant('config', {
     fbaseURL: 'https://zebraz.firebaseio.com',
     fbaseDocRef: 'https://zebraz.firebaseio.com/docs',
-    fbaseTagsRef: 'https://zebraz.firebaseio.com/tags'
+    fbaseTagsRef: 'https://zebraz.firebaseio.com/tags',
+    fbaseBookmarkedRef: 'https://zebraz.firebaseio.com/bookmarked'
 })
