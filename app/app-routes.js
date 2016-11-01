@@ -26,6 +26,10 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl: "pages/tags.html",
             controller: "tagsController"
         })
+        .when("/login", {
+            templateUrl: "pages/admin/login.html",
+            controller: "adminLoginController"
+        })
         .otherwise({
             redirectTo: 'pages/err/404.html'
         });

@@ -53,11 +53,12 @@ header.hero {
 }
 
 header.hero.collapse {
-    height: 100px;
+    height: 0;
+    margin-bottom: 30px;
 }
 
 header * {
-    transition: width 250ms ease-in-out;
+/*     transition: all 300ms ease-in-out; */
 }
 
 header .heading {
@@ -145,6 +146,7 @@ header .header-tools .search-wrapper button#searchButton {
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 20;
 }
 
 .header-tools.full-screen .search-wrapper input {
@@ -240,16 +242,16 @@ aside section.side-panel ul {
 /*END*/
 /*Docs container */
 #docs .doc {
-    max-height: 180px;
+    /* max-height: 180px; */
     min-height: 370px;
-    overflow: hidden;
+    /* overflow: hidden; */
     margin-bottom: 20px;
     background: rgba(238, 238, 238, 0.15);
 }
 
 #docs .doc .wrapper {
     background: #ffffff;
-    border-radius: 2px;
+    border-radius: 1.5px;
     position: relative;
     overflow: hidden;
     min-height: 120px;
@@ -370,16 +372,6 @@ aside section.side-panel ul {
     color: #d03;
     border-radius: 1px;
     position: relative;
-}
-
-#docs .doc .wrapper .code:after {
-    content: '';
-    width: 98%;
-    height: 30px;
-    background: rgba(238, 238, 238, 0.7);
-    position: absolute;
-    top: auto;
-    bottom: 0;
 }
 
 #docs .doc .wrapper .code.invert {

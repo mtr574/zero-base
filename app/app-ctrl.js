@@ -10,7 +10,7 @@ app.controller("mainController", function($scope, config, $location, $firebaseOb
 
     // Toggle grid view
     $scope.toggleGridView = function() {
-      $("#docs > article").toggleClass("col-sm-12").toggleClass("col-sm-6");
+        $("#docs > article").toggleClass("col-sm-12").toggleClass("col-sm-6");
     }
 
     // Doc widget menu
@@ -247,4 +247,27 @@ app.controller('tagsController', function($scope, config, $firebaseArray) {
     var tags = $firebaseArray(ref);
 
     $scope.tagsList = tags;
+});
+
+/*
+ * Admin controller
+ */
+app.controller('adminLoginController', function($scope, config, $firebaseAuth) {
+    $scope.adminLogin = function() {
+        var email = $scope.login_email,
+            password = $scope.login_password;
+
+        var ref = new Firebase(config.fbaseDocRef);
+        $scope.authObj = $firebaseAuth(ref);
+
+        $scope.authObj.$authWithPassword({
+            email: email,
+            password: password
+        }).then(function(authData) {
+            console.log("Logged in as:", authData.uid);
+            window.location.replace('/');
+        }).catch(function(error) {
+            console.error("Authentication failed:", error);
+        });
+    }
 });
