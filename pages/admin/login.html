@@ -1,0 +1,22 @@
+<!-- New doc panel -->
+<section id="" class="section narrow">
+    <form name="" class="panel box-sha" ng-submit="adminLogin()">
+        <div class="row">
+            <div class="headline">
+                <h3>Admin Login</h3>
+            </div>
+            <div class="input-group">
+                <label for="name">Email</label>
+                <input id="name" class="form-control" type="text" ng-model="login_email"/>
+            </div>
+            <div class="input-group">
+                <label for="name">P4ssw0rd</label>
+                <input id="name" class="form-control" type="text" ng-model="login_password"/>
+            </div>
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-purple">Auth</button>
+                <button type="button" class="btn btn-default" name="button" ng-click="goto('/')">Back</button>
+            </div>
+        </div>
+    </form>
+</section>
