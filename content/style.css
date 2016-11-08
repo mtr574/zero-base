@@ -282,8 +282,9 @@ aside section.side-panel ul {
 
 #docs .doc .wrapper header h3 span.info {
     font-size: 14px;
-    padding: 2px 0;
+    padding: 0 2px;
     color: #b2af86;
+    vertical-align: middle;
 }
 
 #docs .doc .wrapper header h3 span.info:before {

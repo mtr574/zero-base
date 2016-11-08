@@ -1,5 +1,5 @@
 <!--
-____  ____  ____   __       ____   __   ____  ____
+ ____  ____  ____   __       ____   __   ____  ____
 (__  )(  __)(  _ \ /  \  ___(  _ \ / _\ / ___)(  __)
 / _/  ) _)  )   /(  O )(___)) _ (/    \\___ \ ) _)
 (____)(____)(__\_) \__/     (____/\_/\_/(____/(____)
@@ -78,7 +78,7 @@ ____  ____  ____   __       ____   __   ____  ____
                 </div>
                 <ng-view class="col-md-10"></ng-view>
                 <aside class="col-md-2 hidden-xs">
-                    <section class="side-panel">
+                    <section class=""><!-- side-panel -->
                         <div class="navigation box-sha">
                             <ul>
                                 <li><a href="/login">Login</a></li>
@@ -89,7 +89,30 @@ ____  ____  ____   __       ____   __   ____  ____
                     </section>
                 </aside>
             </div>
+<footer>
+	<div class="">
+		<hr><p class="center-block">search through code made easy with <a href='#search'>zero-base</a><p>
+	</div>
+</footer>
         </div>
         <script type="text/javascript" src="/app/scripts.min.js"></script>
+<script>
+
+$('aside').affix({
+  offset: {
+    top: $('aside').offset().top,
+    bottom: function () {
+      return (this.bottom = $('footer').outerHeight(true))
+    }
+  }
+})
+
+</script>
+<style>
+aside.affix {
+    right: 0;
+    top: 0;
+}
+</style>
     </body>
 </html>
