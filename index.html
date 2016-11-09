@@ -64,55 +64,44 @@
                 <div class="dot"></div>
             </div>
             <div class="row">
-                <div class="tools">
+                <div class="tools hidden-xs">
                     <button id="docsOrderTime" type="button" class="btn hidden">
                         <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
                     </button>
-                    <button id="docsGridview" type="button" class="btn"ng-click="toggleGridView()" data-toggle="tooltip" data-placement="top" title="Toggle grid view">
+                    <button id="docsGridview" type="button" class="btn" ng-click="toggleGridView()" data-toggle="tooltip" data-placement="top" title="Toggle grid view">
                         <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
                     </button>
                 </div>
                 <ng-view class="col-md-10"></ng-view>
                 <aside class="col-md-2 hidden-xs">
-                    <section class=""><!-- side-panel -->
+                    <section class="">
+                        <!-- side-panel -->
                         <div class="navigation box-sha">
                             <ul>
-                                <li><a href="/login">Login</a></li>
-                                <li><a href="#" ng-click="goto('/tags')">Tags</a></li>
                                 <li>
-<button type="button" class="btn" ng-click="goto('\bookmark')">Bookmarks
-                        <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
-                    </button>
-                    </li>
+                                    <a href="/login">Login</a>
+                                </li>
+                                <li>
+                                    <a href="#" ng-click="goto('/tags')">Tags</a>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn" ng-click="goto('\bookmark')">Bookmarks
+                                        <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
+                                    </button>
+                                </li>
                             </ul>
                         </div>
                     </section>
                 </aside>
             </div>
-<footer>
-	<div class="">
-		<hr><p class="center-block">search through code made easy with <a href='#search'>zero-base</a><p>
-	</div>
-</footer>
-        </div>
-        <script type="text/javascript" src="/app/scripts.min.js"></script>
-<script>
-
-$('aside').affix({
-  offset: {
-    top: $('aside').offset().top,
-    bottom: function () {
-      return (this.bottom = $('footer').outerHeight(true))
-    }
-  }
-})
-
-</script>
-<style>
-aside.affix {
-    right: 0;
-    top: 0;
-}
-</style>
-    </body>
-</html>
+            <footer>
+                <div class="wrapper">
+                    <hr>
+                    <p class="center-block">search through code made easy with
+                        <a href='#search'>zero-base</a>
+                        <p></div>
+                    </footer>
+                </div>
+                <script type="text/javascript" src="/app/scripts.min.js"></script>
+            </body>
+        </html>

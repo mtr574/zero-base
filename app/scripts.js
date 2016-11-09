@@ -36,24 +36,12 @@ $(function() {
         docsContainer.addClass('col-md-6').removeClass('col-md-12');
     });
     // Aside sticky panel
-    var isStuck = false,
-        panel_Yoffset = $('.side-panel').offset().top,
-        panel_width = $('.side-panel').width();
-    $(window).on('scroll', function(e) {
-        var window_Yoffset = $(window).scrollTop();
-        if (window_Yoffset >= panel_Yoffset) {
-            if (!isStuck) {
-                $('.side-panel').addClass('sticky').css({
-                    'width': panel_width
-                });
-                isStuck = true;
-            }
-        } else {
-            $('.side-panel').removeClass('sticky');
-            isStuck = false;
+    $('aside section').affix({
+        offset: {
+            top: $('aside').offset().top
         }
     });
-    // tooltips
+    // Tooltips
     $('[data-toggle="tooltip"]').tooltip();
     // Capture 's' key to focus search input
     firstTime = false;

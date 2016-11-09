@@ -6,8 +6,7 @@
                 <h3>
                     <span class="cheers">{{ doc.cheers }}</span>
                     <a href="/view/{{this.doc.$id}}">{{ doc.title }}</a>
-                    <span class="info">{{ doc.time | date : format : timezone}}</span>
-                    <span class="info">{{ doc.creator }}</span>
+                    <span class="info hidden-xs">{{ doc.creator }} @ {{ doc.time | date : format : timezone}}</span>
                 </h3>
                 <button type="button" class="doc-menu" ng-click="toggleMenu(this)">
                     <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
