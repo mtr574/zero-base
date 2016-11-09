@@ -1,7 +1,7 @@
 <!--
  ____  ____  ____   __       ____   __   ____  ____
 (__  )(  __)(  _ \ /  \  ___(  _ \ / _\ / ___)(  __)
-/ _/  ) _)  )   /(  O )(___)) _ (/    \\___ \ ) _)
+ / _/  ) _)  )   /(  O )(___)) _ (/    \\___ \ ) _)
 (____)(____)(__\_) \__/     (____/\_/\_/(____/(____)
 -->
 <!DOCTYPE html>
@@ -65,16 +65,12 @@
             </div>
             <div class="row">
                 <div class="tools">
-                    <button id="docsOrderTime" type="button" class="btn">
+                    <button id="docsOrderTime" type="button" class="btn hidden">
                         <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
                     </button>
-                    <button id="docsGridview" type="button" class="btn" ng-click="toggleGridView()">
+                    <button id="docsGridview" type="button" class="btn"ng-click="toggleGridView()" data-toggle="tooltip" data-placement="top" title="Toggle grid view">
                         <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
                     </button>
-                    <button type="button" class="btn" ng-click="goto('\bookmark')">Bookmarks
-                        <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
-                    </button>
-                    <a href="#" ng-click="goto('/tags')">Tags</a>
                 </div>
                 <ng-view class="col-md-10"></ng-view>
                 <aside class="col-md-2 hidden-xs">
@@ -82,8 +78,12 @@
                         <div class="navigation box-sha">
                             <ul>
                                 <li><a href="/login">Login</a></li>
-                                <li>aside menu</li>
-                                <li>aside menu</li>
+                                <li><a href="#" ng-click="goto('/tags')">Tags</a></li>
+                                <li>
+<button type="button" class="btn" ng-click="goto('\bookmark')">Bookmarks
+                        <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
+                    </button>
+                    </li>
                             </ul>
                         </div>
                     </section>
