@@ -45,21 +45,13 @@ $(function() {
     $('[data-toggle="tooltip"]').tooltip();
     // Capture 's' key to focus search input
     firstTime = false;
-    $(window).on('keydown', function(e) {
-        switch (e.keyCode) {
-            case 83:
-                if (!firstTime) {
-                    e.preventDefault();
-                    $("#search").focus();
-                    firstTime = true;
-                }
-                break;
-            case 27:
-                $("#search").val(null).blur();
-                break;
-            default:
-        }
-    });
+
+document.onkeyup = function(e) {
+  if(e.ctrlKey && e.keyCode == 90) {
+    if(!firstTime) { $("#search").focus(); firstTime = true; }
+    else { firstTime = false; $("#search").val(null).blur(); }
+  }
+}
 
     // Clipboard copy handlers
     $('.copy-code').on('click', function() {
