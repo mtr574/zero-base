@@ -47,7 +47,8 @@ $(function() {
     firstTime = false;
 
 document.onkeyup = function(e) {
-  if(e.ctrlKey && e.keyCode == 90) {
+  var c = e.keyCode;
+  if(e.shiftKey && c == 83) {
     if(!firstTime) { $("#search").focus(); firstTime = true; }
     else { firstTime = false; $("#search").val(null).blur(); }
   }
