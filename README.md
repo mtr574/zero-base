@@ -1,20 +1,12 @@
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+# Zero-Base
 
-### Knowledge base
+Zero-Base is a blog-like web-app where you can store information, code snippets and more.
 
-Data base with elastic search engine for developers
+## Motivation
 
-#### Usage
-```sh
-npm install
-```
+Create static SPA Angular1 based, with Firebase hosting and real-time-database services.
 
-Webpack is used for css minifying.
+## Usage
+install dependencies: `npm install`
 
-```sh
-webpack
-```
-
-#### Dependencies
-
-- [Webpack](https://webpack.github.io/)
+bundle: `webpack`
